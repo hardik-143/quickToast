@@ -49,6 +49,8 @@ QuickToast({
 
 Pass a custom DOM element for fully flexible and complex toast content.
 
+> `node` will override the `text` option if used together.
+
 <div class="code-wrapper">
   <div>
   <button data-quicktoast>Show Toast</button>
@@ -112,6 +114,8 @@ Show a progress bar indicating the remaining time before the toast disappears.
 
 > works only when `alwaysVisible: false`.
 
+> default is `false`.
+
 <div class="code-wrapper">
   <div>
   <button data-quicktoast>Show Toast</button>
@@ -162,9 +166,11 @@ Available Options are:
 
 - `success`: Indicates a successful action.
 - `error`: Indicates an error or warning.
-- `info`: Provides general information (`default`).
+- `info`: Provides general information.
 - `warning`: Indicates a potential issue.
 - `danger`: Indicates a critical problem or action required.
+
+> default is `info`.
 
 Let's see some examples of how to use these types in your toast notifications.
 
@@ -230,6 +236,8 @@ QuickToast({
 
 Set this option to `true` if you want the toast to open the destination link in a new window.
 
+> default is `false`.
+
 <div class="code-wrapper">
   <div>
   <button data-quicktoast>Show Toast</button>
@@ -250,6 +258,8 @@ QuickToast({
 ## alwaysVisible
 
 Set this option to `true` if you want the toast to remain visible until explicitly closed.
+
+> default is `false`.
 
 <div class="code-wrapper">
   <div>
@@ -367,6 +377,8 @@ QuickToast({
 
 Set this option to `true` if you want to display an action button
 
+> default is `false`.
+
 <div class="code-wrapper">
   <div>
   <button data-quicktoast>Show Toast</button>
@@ -386,6 +398,8 @@ QuickToast({
 ## okayButtonText
 
 This option allows you to customize the text of the okay button.
+
+> default is `Okay`.
 
 <div class="code-wrapper">
   <div>
@@ -430,6 +444,8 @@ QuickToast({
 ## closeAfterOnOkay
 
 Set this option to `true` if you want the toast not to be removed automatically after the okay button is clicked.
+
+> default is `false`.
 
 <div class="code-wrapper">
   <div>
@@ -546,7 +562,9 @@ QuickToast({
 
 Set this option to `true` if you want to escape HTML markup in the toast text.
 
-#### Without escaping html
+> default is `false`.
+
+### Without escaping html <!-- {docsify-ignore} -->
 
 <div class="code-wrapper">
   <div>
@@ -561,7 +579,7 @@ QuickToast({
 
 </div>
 
-#### With escaping html
+### With escaping html <!-- {docsify-ignore} -->
 
 <div class="code-wrapper">
   <div>
@@ -635,6 +653,8 @@ QuickToast({
 
 you can define a custom selector for the toast container.
 
+> default is `body`
+
 <div class="code-wrapper">
   <div>
   <button data-quicktoast>Show Toast</button>
@@ -657,6 +677,8 @@ QuickToast({
 
 Set this option to `true` if you want to display the oldest toast first.
 Let's understand better with an example
+
+> default is `false`.
 
 Latest toast will be displayed at the most top
 

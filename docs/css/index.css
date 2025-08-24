@@ -49,3 +49,14 @@ pre {
 .quickToast-content * {
   margin: 0 !important;
 }
+
+@media screen and (max-width: 992px) {
+  article.markdown-section {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 768px) {
+  article.markdown-section {
+    width: calc(100% - 32px);
+  }
+}
