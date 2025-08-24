@@ -1,3 +1,3 @@
 - [Home](/)
 - [Getting Started](getting-started.md)
-- [Options](options.md)
+- [Configuration Options](configuration-options.md)

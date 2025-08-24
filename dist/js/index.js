@@ -76,7 +76,7 @@ const generateSalt = (length) => {
 const apiEncrypt = (input) => {
   try {
     // Base64 encoding
-    let encryptedData = btoa(input);
+    let encryptedData = btoa(unescape(encodeURIComponent(input)));
 
     // Custom replacement of '=' with '143'
     encryptedData = encryptedData.replace(/=/g, "143");

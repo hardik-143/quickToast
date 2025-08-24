@@ -19,6 +19,7 @@
 
     <!-- QuickToast JS -->
     <script src="//cdn.jsdelivr.net/gh/hardik-143/quickToast@latest/dist/js/index.min.js"></script>
+    <!-- <script src="../dist/js/index.js"></script> -->
     <script>
       // let randomText = [
       //   "This is a random toast message!",
@@ -88,8 +89,6 @@
           onDestroy: () => {
             alert("Toast was destroyed");
           },
-          progress: true,
-          alwaysVisible: true,
           type: "success",
         },
         // {
@@ -99,35 +98,34 @@
         {
           text: "with <i>escapeMarkup</i> is true",
           type: "info",
-          alwaysVisible: true,
         },
         {
           text: "This toast will disappear after 5 seconds can pause the execution in hover",
           duration: 5000,
-          type: "danger",
-          // progress: true,
-        },
-        {
-          text: "Toast with Progressbar",
-          duration: 9000,
           type: "warning",
           progress: true,
         },
+        // {
+        //   text: "Toast with Progressbar <br> hover to pause",
+        //   duration: 9000,
+        //   type: "warning",
+        //   progress: true,
+        // },
         {
           text: "This toast will always be visible",
           alwaysVisible: true,
           type: "danger",
         },
-        {
-          text: "This is a toast with an okay button ",
-          type: "success",
-          showOkayButton: true,
-          okayButtonText: "Done",
-          closeAfterOnOkay: false,
-          onOkay: () => {
-            alert("Okay button clicked");
-          },
-        },
+        // {
+        //   text: "This is a toast with an okay button ",
+        //   type: "success",
+        //   showOkayButton: true,
+        //   okayButtonText: "Done",
+        //   closeAfterOnOkay: false,
+        //   onOkay: () => {
+        //     alert("Okay button clicked");
+        //   },
+        // },
       ];
       document.addEventListener("click", function () {
         // data-quicktoast-random
@@ -136,9 +134,7 @@
         let obj =
           toastifyObjArray[Math.floor(Math.random() * toastifyObjArray.length)];
         console.log(obj);
-        QuickToast({
-          obj,
-        }).showToast();
+        QuickToast(obj).showToast();
       });
       document.addEventListener("click", function (e) {
         // "[data-quicktoast]"
@@ -147,10 +143,11 @@
         e.stopPropagation();
         let codeWrapper = btn.closest(".code-wrapper");
         let jsCode = codeWrapper.querySelector("[data-lang='javascript']");
+        console.log("jsCode", jsCode);
         if (jsCode) {
           let codeElement = jsCode.querySelector("code");
           let code = codeElement.textContent.trim();
-          if (/^QuickToast\s*\(/.test(code)) {
+          if (/QuickToast\s*\(/.test(code)) {
             try {
               new Function(code)();
             } catch (err) {
@@ -163,7 +160,7 @@
         name: "QuickToast",
         repo: "https://github.com/your-repo",
         loadSidebar: true,
-        subMaxLevel: 2,
+        subMaxLevel: 3,
         routerMode: "history", // default: 'hash'
         themeColor: "#347433",
       };
