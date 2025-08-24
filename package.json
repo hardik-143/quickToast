@@ -1,0 +1,18 @@
+{
+  "name": "quicktoast",
+  "version": "1.0.0",
+  "description": "quickToast is a lightweight and dependency-free JavaScript toast notification library that helps you display quick, customizable alerts on your website. With simple configuration options, you can show success, error, info, or custom messages that automatically fade away. Perfect for adding non-intrusive feedback to your apps in just a few lines of code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify": "npm run minify:js && npm run minify:css",
+    "minify:css": "cleancss -o dist/css/index.min.css dist/css/index.css",
+    "minify:js": "terser dist/js/index.js -o dist/js/index.min.js -c -m"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.43.1"
+  }
+}
