@@ -294,20 +294,6 @@ const containsClass = (elem, yourClass) => {
 
       quickToastContentWrapperElement.appendChild(quickToastContentElement);
 
-      // let id = generateUniqueID(
-      //   this.options.id,
-      //   quickToastContentElement.textContent
-      // );
-
-      if (
-        document.querySelectorAll('[data-id="' + this.options.id + '"]')
-          .length > 0
-      ) {
-        console.warn("Toast with this configuration already exists");
-        // this.preventNullElementError = true;
-        return null;
-      }
-
       // TOAST ACTION BUTTONS
       // OKAY BUTTON IF showOkayButton IS TRUE
       let quickToastActionButtonsElement = document.createElement("div");
@@ -325,7 +311,22 @@ const containsClass = (elem, yourClass) => {
         );
       }
 
-      quickToastElement.setAttribute("data-id", id);
+      // let id = generateUniqueID(
+      //   this.options.id,
+      //   quickToastContentElement.textContent
+      // );
+
+      if (this.options.id) {
+        quickToastElement.setAttribute("data-id", id);
+      }
+      if (
+        document.querySelectorAll('[data-id="' + this.options.id + '"]')
+          .length > 0
+      ) {
+        console.warn("Toast with this configuration already exists");
+        // this.preventNullElementError = true;
+        return null;
+      }
       quickToastInnerElement.appendChild(quickToastIconElement);
       quickToastInnerElement.appendChild(quickToastContentWrapperElement);
 
