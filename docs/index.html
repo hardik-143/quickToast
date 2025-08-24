@@ -74,10 +74,42 @@
 
       // let types = ["info", "success", "warning", "error"];
 
-      let nodeContent = document.createElement("div");
-      nodeContent.innerHTML = `<h3>Node Content</h3><p>This is a <u>toast</u> with a custom node.</p>`;
-      nodeContent.style.color = "red";
-      nodeContent.style.fontSize = "20px";
+      let messages = [
+        {
+          title: "🎉 Congratulations!",
+          body: "You’ve displayed a <u>toast</u> with a custom node.",
+          color: "red",
+          size: "20px",
+        },
+        {
+          title: "⚡ Heads up!",
+          body: "This is another <u>toast</u> using a custom element.",
+          color: "blue",
+          size: "18px",
+        },
+        {
+          title: "✅ Success",
+          body: "Your <i>custom toast</i> is working perfectly.",
+          color: "green",
+          size: "22px",
+        },
+      ];
+
+      let nodeContentOne = document.createElement("div");
+      nodeContentOne.innerHTML = `<h3>🎉 Congratulations!</h3><p>You’ve displayed a <u>toast</u> with a custom node.</p>`;
+      nodeContentOne.style.color = "red";
+      nodeContentOne.style.fontSize = "20px";
+
+      let nodeContentTwo = document.createElement("div");
+      nodeContentTwo.innerHTML = `<h3>⚡ Heads up!</h3><p>This is another <u>toast</u> using a custom element.</p>`;
+      nodeContentTwo.style.color = "blue";
+      nodeContentTwo.style.fontSize = "18px";
+
+      let nodeContentThree = document.createElement("div");
+      nodeContentThree.innerHTML = `<h3>✅ Success</h3><p>Your <i>custom toast</i> is working perfectly.</p>`;
+      nodeContentThree.style.color = "green";
+      nodeContentThree.style.fontSize = "22px";
+
       let toastifyObjArray = [
         {
           text: "This is a toast with a title",
@@ -85,19 +117,23 @@
           type: "success",
         },
         {
-          text: "This toast will show an alert when destroyed",
-          onDestroy: () => {
-            alert("Toast was destroyed");
-          },
-          type: "success",
+          node: nodeContentOne,
+          type: "info",
+          alwaysVisible: true,
         },
-        // {
-        //   node: nodeContent,
-        //   type: "info",
-        // },
+        {
+          node: nodeContentOne,
+          type: "success",
+          alwaysVisible: true,
+        },
+        {
+          node: nodeContentOne,
+          type: "success",
+          alwaysVisible: true,
+        },
         {
           text: "with <i>escapeMarkup</i> is true",
-          type: "info",
+          type: "warning",
         },
         {
           text: "This toast will disappear after 5 seconds can pause the execution in hover",
@@ -131,9 +167,10 @@
         // data-quicktoast-random
         const btn = event.target.closest("[data-quicktoast-random]");
         if (!btn) return;
+        let positionRandom = Math.random() < 0.5 ? "left" : "right";
         let obj =
           toastifyObjArray[Math.floor(Math.random() * toastifyObjArray.length)];
-        QuickToast(obj).showToast();
+        QuickToast({ ...obj, position: positionRandom }).showToast();
       });
       document.addEventListener("click", function (e) {
         // "[data-quicktoast]"

@@ -24,14 +24,13 @@ const __DEFAULT = {
   gravity: "quickToast-top", // position of the toast - top or bottom
   position: "right", // position of the toast - left or right
 
-
   rootClass: "", // additional class names for the root element of the toast
   offset: { x: 0, y: 0 }, // offset of the toast
-  
+
   escapeMarkup: false, // escape markup
-  
+
   ariaLive: "polite", // aria live
-  
+
   style: { background: "" }, // style of the toast
   selector: document.body, // selector to display the toast
 
@@ -293,7 +292,8 @@ const containsClass = (elem, yourClass) => {
         this.options.node &&
         this.options.node.nodeType === Node.ELEMENT_NODE
       ) {
-        quickToastContentElement.appendChild(this.options.node);
+        let clonedNode = this.options.node.cloneNode(true); // true = deep clone
+        quickToastContentElement.appendChild(clonedNode);
       } else {
         if (this.options.escapeMarkup) {
           quickToastContentElement.innerHTML = this.options.text;
