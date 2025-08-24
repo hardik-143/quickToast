@@ -33,7 +33,6 @@ const __DEFAULT = {
   ariaLive: "polite", // aria live
   
   style: { background: "" }, // style of the toast
-  
   selector: document.body, // selector to display the toast
 
   oldestFirst: false, // show the oldest toast first

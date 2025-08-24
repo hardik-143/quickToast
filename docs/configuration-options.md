@@ -656,6 +656,9 @@ QuickToast({
 ## oldestFirst
 
 Set this option to `true` if you want to display the oldest toast first.
+Let's understand better with an example
+
+Latest toast will be displayed at the most top
 
 <div class="code-wrapper">
   <div>
@@ -682,6 +685,38 @@ QuickToast({
 QuickToast({
   text: "This toast will be displayed fourth",
   //   oldestFirst: true,
+}).showToast();
+```
+
+</div>
+
+Latest toast will be displayed at the most bottom
+
+<div class="code-wrapper">
+  <div>
+  <button data-quicktoast>Show Toasts</button>
+  </div>
+  <div id="my-custom-container"></div>
+
+```javascript
+QuickToast({
+  text: "This toast will be displayed first",
+  type: "warning",
+  oldestFirst: true,
+}).showToast();
+QuickToast({
+  text: "This toast will be displayed second",
+  type: "error",
+  oldestFirst: true,
+}).showToast();
+QuickToast({
+  text: "This toast will be displayed third",
+  type: "success",
+  oldestFirst: true,
+}).showToast();
+QuickToast({
+  text: "This toast will be displayed fourth",
+  oldestFirst: true,
 }).showToast();
 ```
 
