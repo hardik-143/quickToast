@@ -18,7 +18,7 @@
     <div id="app">Please wait...</div>
 
     <!-- QuickToast JS -->
-    <script src="//cdn.jsdelivr.net/gh/hardik-143/quickToast@latest/dist/js/index.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/hardik-143/quickToast@latest/dist/js/index.js"></script>
     <!-- <script src="../dist/js/index.js"></script> -->
     <script>
       // let randomText = [
@@ -133,7 +133,6 @@
         if (!btn) return;
         let obj =
           toastifyObjArray[Math.floor(Math.random() * toastifyObjArray.length)];
-        console.log(obj);
         QuickToast(obj).showToast();
       });
       document.addEventListener("click", function (e) {
@@ -143,7 +142,6 @@
         e.stopPropagation();
         let codeWrapper = btn.closest(".code-wrapper");
         let jsCode = codeWrapper.querySelector("[data-lang='javascript']");
-        console.log("jsCode", jsCode);
         if (jsCode) {
           let codeElement = jsCode.querySelector("code");
           let code = codeElement.textContent.trim();

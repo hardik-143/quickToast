@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/css/index.css" />
+  </head>
+  <body>
+    <div class="customToastContainer"></div>
+    <button class="trigger-toast">click me</button>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="dist/js/index.js"></script>
+    <script>
+      QuickToast({
+        text: "Operation successful!",
+        type: "success",
+      }).showToast();
+
+      QuickToast({
+        text: "An error occurred.",
+        type: "error",
+      }).showToast();
+
+      QuickToast({
+        text: "Here is some information.",
+        type: "info",
+      }).showToast();
+
+      QuickToast({
+        text: "This is a warning!",
+        type: "warning",
+      }).showToast();
+
+      QuickToast({
+        text: "Critical error! Action required.",
+        type: "danger",
+      }).showToast();
+    </script>
+  </body>
+</html>

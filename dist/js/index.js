@@ -5,8 +5,13 @@ const __DEFAULT = {
   node: null, // node to display in the toast
   duration: 3000, // duration of the toast in milliseconds
   type: "info", // type of the toast
-  oldestFirst: true, // show the oldest toast first
+  stopOnHover: true, // stop timeout on hover
+  alwaysVisible: false, // always visible
+  close: true, // show the close button
+
   selector: document.body, // selector to display the toast
+
+  newWindow: false, // open the destination in a new window
   destination: null, // destination to navigate to when the toast is clicked
 
   onDestroy: null, // callback function to be called when the toast is removed
@@ -14,21 +19,18 @@ const __DEFAULT = {
   onClick: null, // callback function to be called when the toast is clicked
   onOkay: null, // callback function to be called when the okay button is clicked - for action buttons
 
-  newWindow: false, // open the destination in a new window
-  close: true, // show the close button
   gravity: "quickToast-top", // position of the toast - top or bottom
   position: "right", // position of the toast - left or right
   rootClass: "", // additional class names for the root element of the toast
-  stopOnHover: true, // stop timeout on hover
   offset: { x: 0, y: 0 }, // offset of the toast
   escapeMarkup: true, // escape markup
   ariaLive: "polite", // aria live
   style: { background: "" }, // style of the toast
-  alwaysVisible: false, // always visible
   closeAfterOnOkay: true, // close the toast after the okay button is clicked
   showOkayButton: false, // show the okay button
   okayButtonText: "Okay", // text for the okay button
   progress: false,
+  oldestFirst: false, // show the oldest toast first
 };
 
 const __VERSION = "1.0.0";
@@ -53,8 +55,8 @@ const __ICONS = {
     `,
   info: `
     <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-svg">
-<path d="M0 10.5C0 4.9759 4.4775 0.5 10 0.5C15.5225 0.5 20 4.9759 20 10.5C20 16.0209 15.5225 20.5 10 20.5C4.4775 20.5 0 16.0209 0 10.5ZM10 8.4839C11.0244 8.4839 11.8548 7.6534 11.8548 6.629C11.8548 5.6046 11.0244 4.7742 10 4.7742C8.9756 4.7742 8.1452 5.6046 8.1452 6.629C8.1452 7.6534 8.9756 8.4839 10 8.4839ZM11.761 15.1511L11.4619 9.6672C11.4479 9.4106 11.2357 9.2097 10.9788 9.2097H9.0212C8.7643 9.2097 8.5521 9.4106 8.5381 9.6672L8.239 15.1511C8.2239 15.4282 8.4446 15.6613 8.7221 15.6613L11.2779 15.6613C11.5555 15.6613 11.7761 15.4282 11.761 15.1511Z" fill="currentColor"/>
-</svg>
+      <path d="M0 10.5C0 4.9759 4.4775 0.5 10 0.5C15.5225 0.5 20 4.9759 20 10.5C20 16.0209 15.5225 20.5 10 20.5C4.4775 20.5 0 16.0209 0 10.5ZM10 8.4839C11.0244 8.4839 11.8548 7.6534 11.8548 6.629C11.8548 5.6046 11.0244 4.7742 10 4.7742C8.9756 4.7742 8.1452 5.6046 8.1452 6.629C8.1452 7.6534 8.9756 8.4839 10 8.4839ZM11.761 15.1511L11.4619 9.6672C11.4479 9.4106 11.2357 9.2097 10.9788 9.2097H9.0212C8.7643 9.2097 8.5521 9.4106 8.5381 9.6672L8.239 15.1511C8.2239 15.4282 8.4446 15.6613 8.7221 15.6613L11.2779 15.6613C11.5555 15.6613 11.7761 15.4282 11.761 15.1511Z" fill="currentColor"/>
+    </svg>
     `,
 };
 
@@ -292,12 +294,15 @@ const containsClass = (elem, yourClass) => {
 
       quickToastContentWrapperElement.appendChild(quickToastContentElement);
 
-      let id = generateUniqueID(
-        this.options.id,
-        quickToastContentElement.textContent
-      );
+      // let id = generateUniqueID(
+      //   this.options.id,
+      //   quickToastContentElement.textContent
+      // );
 
-      if (document.querySelectorAll('[data-id="' + id + '"]').length > 0) {
+      if (
+        document.querySelectorAll('[data-id="' + this.options.id + '"]')
+          .length > 0
+      ) {
         console.warn("Toast with this configuration already exists");
         // this.preventNullElementError = true;
         return null;
