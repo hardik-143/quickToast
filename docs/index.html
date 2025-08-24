@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/hardik-143/quickToast@latest/dist/css/index.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">Please wait...</div>
+
+    <!-- QuickToast JS -->
+    <script src="//cdn.jsdelivr.net/gh/hardik-143/quickToast@latest/dist/js/index.min.js"></script>
+    <script>
+      // let randomText = [
+      //   "This is a random toast message!",
+      //   "Another random message!",
+      //   "Hello! Here's a notification for you.",
+      //   "Don't forget to check this out!",
+      //   "Success! Your action was completed.",
+      //   "Oops! Something went wrong.",
+      //   "New updates are available!",
+      //   "Welcome back! Glad to see you.",
+      //   "Reminder: You have tasks pending.",
+      //   "Tip: You can customize your settings.",
+      //   "Yay! Everything worked perfectly.",
+      //   "Heads up! Check your notifications.",
+      //   "Alert! Something needs your attention.",
+      //   "Congrats! You've reached a milestone.",
+      //   "Fun fact: You can drag and drop items.",
+      // ];
+      // let nodeText = [
+      //   "<p>Hello there!</p>",
+      //   "<p><b>Success!</b> Your action was completed.</p>",
+      //   "<p><i>Note:</i> Don't forget to check your tasks.</p>",
+      //   "<p><u>Reminder:</u> You have pending notifications.</p>",
+      //   "<p>Tip: <b><i>Customize your settings</i></b> for a better experience.</p>",
+      //   "<ul><li>Update 1: New feature added</li><li>Update 2: Bug fixed</li></ul>",
+      //   "<p>Alert! <b>Something needs your attention.</b></p>",
+      //   "<p>Congrats! <i>You've reached a milestone.</i></p>",
+      //   "<p>Heads up! Check your <u>notifications</u>.</p>",
+      //   "<p>Fun fact: You can use <b>bold</b>, <i>italic</i>, and <u>underline</u> in messages!</p>",
+      //   "<ul><li>Task 1: Complete profile</li><li>Task 2: Verify email</li></ul>",
+      //   "<p>Yay! Everything <b>worked perfectly</b>!</p>",
+      //   "<p>Reminder: <i>Stay hydrated!</i></p>",
+      //   "<p>Hello! <b>Here's a notification</b> for you.</p>",
+      //   "<p>Another random message with <u>underline</u>.</p>",
+      // ];
+
+      // const getTextContent = () => {
+      //   let isNodeText = Math.random() < 0.5;
+      //   let textContent = isNodeText
+      //     ? randomText[Math.floor(Math.random() * randomText.length)]
+      //     : nodeText[Math.floor(Math.random() * nodeText.length)];
+      //   return textContent;
+      // };
+
+      // const getNodeContent = () => {
+      //   let nodeContent = document.createElement("div");
+      //   nodeContent.innerHTML = `<h3>Node Content</h3><p>This is a <u>toast</u> with a custom node.</p>`;
+      //   nodeContent.style.color = "red";
+      //   nodeContent.style.fontSize = "20px";
+      //   return nodeContent;
+      // };
+
+      // let types = ["info", "success", "warning", "error"];
+
+      let nodeContent = document.createElement("div");
+      nodeContent.innerHTML = `<h3>Node Content</h3><p>This is a <u>toast</u> with a custom node.</p>`;
+      nodeContent.style.color = "red";
+      nodeContent.style.fontSize = "20px";
+      let toastifyObjArray = [
+        {
+          text: "This is a toast with a title",
+          title: "Toast Title",
+          type: "success",
+        },
+        {
+          text: "This toast will show an alert when destroyed",
+          onDestroy: () => {
+            alert("Toast was destroyed");
+          },
+          progress: true,
+          alwaysVisible: true,
+          type: "success",
+        },
+        // {
+        //   node: nodeContent,
+        //   type: "info",
+        // },
+        {
+          text: "with <i>escapeMarkup</i> is true",
+          type: "info",
+          alwaysVisible: true,
+        },
+        {
+          text: "This toast will disappear after 5 seconds can pause the execution in hover",
+          duration: 5000,
+          type: "danger",
+          // progress: true,
+        },
+        {
+          text: "Toast with Progressbar",
+          duration: 9000,
+          type: "warning",
+          progress: true,
+        },
+        {
+          text: "This toast will always be visible",
+          alwaysVisible: true,
+          type: "danger",
+        },
+        {
+          text: "This is a toast with an okay button ",
+          type: "success",
+          showOkayButton: true,
+          okayButtonText: "Done",
+          closeAfterOnOkay: false,
+          onOkay: () => {
+            alert("Okay button clicked");
+          },
+        },
+      ];
+      document.addEventListener("click", function () {
+        // data-quicktoast-random
+        const btn = event.target.closest("[data-quicktoast-random]");
+        if (!btn) return;
+        let obj =
+          toastifyObjArray[Math.floor(Math.random() * toastifyObjArray.length)];
+        console.log(obj);
+        QuickToast({
+          obj,
+        }).showToast();
+      });
+      document.addEventListener("click", function (e) {
+        // "[data-quicktoast]"
+        const btn = e.target.closest("[data-quicktoast]");
+        if (!btn) return;
+        e.stopPropagation();
+        let codeWrapper = btn.closest(".code-wrapper");
+        let jsCode = codeWrapper.querySelector("[data-lang='javascript']");
+        if (jsCode) {
+          let codeElement = jsCode.querySelector("code");
+          let code = codeElement.textContent.trim();
+          if (/^QuickToast\s*\(/.test(code)) {
+            try {
+              new Function(code)();
+            } catch (err) {
+              console.error("Error executing QuickToast demo:", err);
+            }
+          }
+        }
+      });
+      window.$docsify = {
+        name: "QuickToast",
+        repo: "https://github.com/your-repo",
+        loadSidebar: true,
+        subMaxLevel: 2,
+        routerMode: "history", // default: 'hash'
+        themeColor: "#347433",
+      };
+    </script>
+
+    <!-- Docsify Plugins -->
+    <script src="https://unpkg.com/docsify-copy-code@2"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  </body>
+</html>

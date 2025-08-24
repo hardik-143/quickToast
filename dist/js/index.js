@@ -290,6 +290,8 @@ const containsClass = (elem, yourClass) => {
         }
       }
 
+      quickToastContentWrapperElement.appendChild(quickToastContentElement);
+
       let id = generateUniqueID(
         this.options.id,
         quickToastContentElement.textContent
@@ -300,8 +302,6 @@ const containsClass = (elem, yourClass) => {
         // this.preventNullElementError = true;
         return null;
       }
-
-      quickToastContentWrapperElement.appendChild(quickToastContentElement);
 
       // TOAST ACTION BUTTONS
       // OKAY BUTTON IF showOkayButton IS TRUE
