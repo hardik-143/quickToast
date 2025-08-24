@@ -604,9 +604,10 @@ const containsClass = (elem, yourClass) => {
        * Trigger event to remove all toast
        * !preventTriggerEvent is used to prevent trigger event when removeElement is called from quickToast-remove-all
        */
-      if (!preventTriggerEvent) {
-        $(toastElement).trigger("quickToast-remove-all");
-      }
+      // if (!preventTriggerEvent) {
+      //   // $(toastElement).trigger("quickToast-remove-all");
+      //   toastElement.dispatchEvent(new CustomEvent("quickToast-remove-all"));
+      // }
 
       // Removing the element from DOM after transition end
       window.setTimeout(
