@@ -276,8 +276,6 @@ const containsClass = (elem, yourClass) => {
       let quickToastContentElement = document.createElement("div");
       quickToastContentElement.className = "quickToast-content";
 
-      quickToastContentWrapperElement.appendChild(quickToastContentElement);
-
       // TOAST MESSAGE/NODE
       if (
         this.options.node &&
@@ -291,6 +289,19 @@ const containsClass = (elem, yourClass) => {
           quickToastContentElement.innerText = this.options.text;
         }
       }
+
+      let id = generateUniqueID(
+        this.options.id,
+        quickToastContentElement.textContent
+      );
+
+      if (document.querySelectorAll('[data-id="' + id + '"]').length > 0) {
+        console.warn("Toast with this configuration already exists");
+        // this.preventNullElementError = true;
+        return null;
+      }
+
+      quickToastContentWrapperElement.appendChild(quickToastContentElement);
 
       // TOAST ACTION BUTTONS
       // OKAY BUTTON IF showOkayButton IS TRUE
@@ -309,16 +320,6 @@ const containsClass = (elem, yourClass) => {
         );
       }
 
-      let id = generateUniqueID(
-        this.options.id,
-        quickToastContentElement.textContent
-      );
-
-      if (document.querySelectorAll('[data-id="' + id + '"]').length > 0) {
-        console.warn("Toast with this configuration already exists");
-        this.preventNullElementError = true;
-        return null;
-      }
       quickToastElement.setAttribute("data-id", id);
       quickToastInnerElement.appendChild(quickToastIconElement);
       quickToastInnerElement.appendChild(quickToastContentWrapperElement);
@@ -484,11 +485,9 @@ const containsClass = (elem, yourClass) => {
       this.toastElement = this.buildToast();
 
       if (this.toastElement === null) {
-        if (!this.preventNullElementError) {
-          console.error(
-            "Failed to create toast element \n Please check your options"
-          );
-        }
+        console.error(
+          "Failed to create toast element \n Please check your options"
+        );
         return;
       }
 
