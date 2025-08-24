@@ -5,11 +5,10 @@ const __DEFAULT = {
   node: null, // node to display in the toast
   duration: 3000, // duration of the toast in milliseconds
   type: "info", // type of the toast
-  stopOnHover: true, // stop timeout on hover
+  stopOnHover: false, // stop timeout on hover
   alwaysVisible: false, // always visible
   close: true, // show the close button
-
-  selector: document.body, // selector to display the toast
+  progress: false,
 
   newWindow: false, // open the destination in a new window
   destination: null, // destination to navigate to when the toast is clicked
@@ -17,19 +16,26 @@ const __DEFAULT = {
   onDestroy: null, // callback function to be called when the toast is removed
   beforeDestination: null, // callback function to be called before the destination is navigated to
   onClick: null, // callback function to be called when the toast is clicked
+  showOkayButton: false, // show the okay button
   onOkay: null, // callback function to be called when the okay button is clicked - for action buttons
+  okayButtonText: "Okay", // text for the okay button
+  closeAfterOnOkay: false, // close the toast after the okay button is clicked
 
   gravity: "quickToast-top", // position of the toast - top or bottom
   position: "right", // position of the toast - left or right
+
+
   rootClass: "", // additional class names for the root element of the toast
   offset: { x: 0, y: 0 }, // offset of the toast
-  escapeMarkup: true, // escape markup
+  
+  escapeMarkup: false, // escape markup
+  
   ariaLive: "polite", // aria live
+  
   style: { background: "" }, // style of the toast
-  closeAfterOnOkay: true, // close the toast after the okay button is clicked
-  showOkayButton: false, // show the okay button
-  okayButtonText: "Okay", // text for the okay button
-  progress: false,
+  
+  selector: document.body, // selector to display the toast
+
   oldestFirst: false, // show the oldest toast first
 };
 
@@ -111,7 +117,12 @@ const makeOptionsObj = (opts) => {
 
     close: opts.close ?? dflt.close,
 
-    gravity: opts.gravity === "bottom" ? "quickToast-bottom" : dflt.gravity, // Vertical Positioning
+    gravity:
+      opts.gravity === "bottom"
+        ? "quickToast-bottom"
+        : opts.gravity === "top"
+        ? "quickToast-top"
+        : dflt.gravity, // Vertical Positioning
     position: opts.position || dflt.position, // Position of the toast
 
     rootClass: opts.rootClass || dflt.rootClass, // Additional class names for the root element of the toast
