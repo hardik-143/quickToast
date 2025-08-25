@@ -38,6 +38,7 @@ Add formatted content (bold, colors, emojis, etc.) using an HTML string.
 QuickToast({
   text: "<b>Success!</b> 🎉 Your content has been <span style='color:green;'>added</span>.",
   type: "success",
+  escapeMarkup: true,
 }).showToast();
 ```
 
@@ -151,6 +152,7 @@ QuickToast({
   duration: 5000,
   type: "error",
   progress: true,
+  stopOnHover: true,
 }).showToast();
 ```
 
