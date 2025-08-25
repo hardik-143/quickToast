@@ -2,6 +2,36 @@
 
 > Here are some example configuration options for QuickToast:
 
+## Options Reference Table
+
+| Option            | Type          | Default    | Description                                                           |
+| ----------------- | ------------- | ---------- | --------------------------------------------------------------------- |
+| text              | `string`      | -          | The text content to display in the toast notification                 |
+| node              | `HTMLElement` | -          | Custom DOM element for complex toast content (overrides `text`)       |
+| duration          | `number`      | `3000`     | Duration in milliseconds before toast disappears                      |
+| progress          | `boolean`     | `false`    | Show progress bar indicating remaining time                           |
+| stopOnHover       | `boolean`     | `false`    | Pause auto-dismiss when hovering over toast                           |
+| type              | `string`      | `"info"`   | Toast type: `"success"`, `"error"`, `"info"`, `"warning"`, `"danger"` |
+| destination       | `string`      | -          | URL to redirect to when toast is clicked                              |
+| newWindow         | `boolean`     | `false`    | Open destination in new window/tab                                    |
+| alwaysVisible     | `boolean`     | `false`    | Keep toast visible until manually closed                              |
+| close             | `boolean`     | `true`     | Show close button on toast                                            |
+| onDestroy         | `function`    | -          | Callback when toast is removed                                        |
+| beforeDestination | `function`    | -          | Callback before navigating to destination                             |
+| onClick           | `function`    | -          | Callback when toast is clicked (only without destination)             |
+| showOkayButton    | `boolean`     | `false`    | Display an action button on toast                                     |
+| okayButtonText    | `string`      | `"Okay"`   | Custom text for the okay button                                       |
+| onOkay            | `function`    | -          | Callback when okay button is clicked                                  |
+| closeAfterOnOkay  | `boolean`     | `false`    | Remove toast after okay button is clicked                             |
+| position          | `string`      | `"right"`  | Horizontal position: `"left"` or `"right"`                            |
+| gravity           | `string`      | `"top"`    | Vertical position: `"top"` or `"bottom"`                              |
+| rootClass         | `string`      | -          | Custom CSS class for toast root element                               |
+| escapeMarkup      | `boolean`     | `false`    | Escape HTML markup in toast text                                      |
+| ariaLive          | `string`      | `"polite"` | ARIA live region: `"off"`, `"polite"`, `"assertive"`                  |
+| style             | `object`      | -          | Custom CSS styles for toast                                           |
+| selector          | `string`      | `"body"`   | Custom selector for toast container                                   |
+| oldestFirst       | `boolean`     | `false`    | Display oldest toast first instead of newest                          |
+
 ---
 
 ## text
