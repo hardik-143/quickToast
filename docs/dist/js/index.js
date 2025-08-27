@@ -213,9 +213,9 @@ const validateOptions = (opts) => {
   return makeOptionsObj(opts); // Creating the options object
 };
 
-const generateUniqueID = (id, text) => {
-  return id || apiEncrypt(text.toLowerCase().replace(/\s+/g, "-"));
-};
+// const generateUniqueID = (id, text) => {
+//   return id || apiEncrypt(text.toLowerCase().replace(/\s+/g, "-"));
+// };
 
 // Helper function to get offset.
 const getAxisOffsetAValue = (axis, options) => {
@@ -244,9 +244,31 @@ const containsClass = (elem, yourClass) => {
 };
 
 const emitGlobal = (payload) => {
-  document.dispatchEvent(
-    new CustomEvent("quickToast:destroy", { detail: payload })
-  );
+  try {
+    document.dispatchEvent(
+      new CustomEvent("quickToast:destroy", { detail: payload })
+    );
+  } catch (_) {}
+
+  if (payload && payload.reason === "timeout") {
+    const { reason, ...rest } = payload; // destructure to omit reason
+
+    try {
+      document.dispatchEvent(
+        new CustomEvent("quickToast:timeout", { detail: rest })
+      );
+    } catch (_) {}
+  }
+};
+
+// Emit active toast count changes
+const emitCountChange = () => {
+  try {
+    const active = document.querySelectorAll(".quickToast").length;
+    document.dispatchEvent(
+      new CustomEvent("quickToast:count-change", { detail: { active } })
+    );
+  } catch (_) {}
 };
 
 (function (root, factory) {
@@ -475,6 +497,16 @@ const emitGlobal = (payload) => {
             cancelAnimationFrame(this.progressRAF);
             const elapsedTime = Date.now() - this.startTime;
             this.remainingTime -= elapsedTime;
+            try {
+              document.dispatchEvent(
+                new CustomEvent("quickToast:pause", {
+                  detail: {
+                    remainingMs: this.remainingTime,
+                    durationMs: this.options.duration,
+                  },
+                })
+              );
+            } catch (_) {}
           }.bind(this)
         );
         // add back the timeout
@@ -484,6 +516,16 @@ const emitGlobal = (payload) => {
             if (this.remainingTime > 0) {
               this.startTimer(this.remainingTime);
             }
+            try {
+              document.dispatchEvent(
+                new CustomEvent("quickToast:resume", {
+                  detail: {
+                    remainingMs: this.remainingTime,
+                    durationMs: this.options.duration,
+                  },
+                })
+              );
+            } catch (_) {}
           }.bind(this)
         );
       }
@@ -699,6 +741,23 @@ const emitGlobal = (payload) => {
         throw "Root element is not defined";
       }
 
+      const showEventDetail = {
+        type: this.options.type,
+        ...(this.options?.title &&
+          !this.options?.node && {
+            title: this.options.title,
+          }),
+        ...(this.options?.node && { node: this.options.node }),
+        ...(this.options?.text && { text: this.options.text }),
+        toastElement: this.toastElement,
+      };
+      // Fire show (toast about to get insert into dom)
+      try {
+        document.dispatchEvent(
+          new CustomEvent("quickToast:show", { detail: showEventDetail })
+        );
+      } catch (_) {}
+
       // ADDING INTO DOMs
       var elementToInsert = this.options.oldestFirst
         ? rootElement.lastChild
@@ -708,6 +767,16 @@ const emitGlobal = (payload) => {
       // Repositioning the toasts in case multiple toasts are present
       this.reposition();
 
+      // Fire show (toast inserted into dom)
+      try {
+        document.dispatchEvent(
+          new CustomEvent("quickToast:inserted", { detail: showEventDetail })
+        );
+      } catch (_) {}
+
+      // Notify listeners that the count changed after insertion
+      emitCountChange();
+
       this.initialStartTime = Date.now();
       // Setting up the timeout for the toast to AUTO REMOVAL
       if (!this.options.alwaysVisible && this.options.duration > 0) {
@@ -715,9 +784,25 @@ const emitGlobal = (payload) => {
         this.startTimer(this.remainingTime);
       }
 
+      this.toastElement.classList.add("show");
+
+      // get transition duration (in ms)
+      const style = window.getComputedStyle(this.toastElement);
+      const duration =
+        parseFloat(style.transitionDuration || "0") * 1000 + // in seconds → ms
+        parseFloat(style.transitionDelay || "0") * 1000; // include delay
+
+      // fallback if no transition set
+      const delay = duration > 0 ? duration : 200;
+
       setTimeout(() => {
-        this.toastElement.classList.add("show");
-      }, 200);
+        try {
+          document.dispatchEvent(
+            new CustomEvent("quickToast:shown", { detail: showEventDetail })
+          );
+        } catch (_) {}
+      }, delay);
+
       // Supporting function chaining
       return this;
     },
@@ -725,13 +810,24 @@ const emitGlobal = (payload) => {
     updateProgress: function () {
       const elapsed = Date.now() - this.startTime;
       // Remaining ratio between 0 and 1
-      const ratio = Math.max(
-        0,
-        (this.remainingTime - elapsed) / this.options.duration
-      );
+      const remainingMs = Math.max(0, this.remainingTime - elapsed);
+      const ratio = Math.max(0, remainingMs / this.options.duration);
 
       // Apply scaling
       this.quickToastProgressBar.style.transform = `scaleX(${ratio})`;
+
+      // Emit progress updates globally when enabled
+      try {
+        document.dispatchEvent(
+          new CustomEvent("quickToast:progress", {
+            detail: {
+              ratio,
+              remainingMs,
+              durationMs: this.options.duration,
+            },
+          })
+        );
+      } catch (_) {}
 
       if (ratio > 0) {
         this.progressRAF = requestAnimationFrame(
@@ -770,6 +866,30 @@ const emitGlobal = (payload) => {
     removeElement: function (toastElement, reason = "timeout") {
       // Hiding the element
       // toastElement.classList.remove("on");
+      // Fire hide (start of hide transition)
+      try {
+        const hidePayload = function () {
+          return {
+            type: this.options.type,
+            reason,
+            lifetimeMs: Date.now() - (this.initialStartTime ?? Date.now()),
+            remainingToasts: Math.max(
+              0,
+              document.querySelectorAll(".quickToast").length - 1
+            ),
+            ...(this.options?.title &&
+              !this.options?.node && {
+                title: this.options.title,
+              }),
+            ...(this.options?.node && { node: this.options.node }),
+            ...(this.options?.text && { text: this.options.text }),
+            toastElement: this.toastElement,
+          };
+        }.call(this);
+        document.dispatchEvent(
+          new CustomEvent("quickToast:hide", { detail: hidePayload })
+        );
+      } catch (_) {}
       toastElement.className = toastElement.className.replace(" show", "");
 
       /**
@@ -805,6 +925,8 @@ const emitGlobal = (payload) => {
             console.error("onDestroy error:", err);
           }
           emitGlobal(payload);
+          // Notify listeners that the count changed after removal
+          emitCountChange();
 
           this.reposition();
         }.bind(this),
@@ -906,10 +1028,19 @@ const emitGlobal = (payload) => {
       return QuickToast({ type: "danger", ...options }).showToast();
     }),
     (QuickToast.demo = function () {
-      QuickToast.info("This is an info message");
-      setTimeout(() => QuickToast.success("This is a success message"), 500);
-      setTimeout(() => QuickToast.warning("This is a warning message"), 1000);
-      setTimeout(() => QuickToast.error("This is an error message"), 1500);
+      QuickToast.info({ text: "This is an info message" });
+      setTimeout(
+        () => QuickToast.success({ text: "This is a success message" }),
+        500
+      );
+      setTimeout(
+        () => QuickToast.warning({ text: "This is a warning message" }),
+        1000
+      );
+      setTimeout(
+        () => QuickToast.error({ text: "This is an error message" }),
+        1500
+      );
     }),
     (QuickToast.clear = function () {
       const toasts = document.querySelectorAll(".quickToast");
