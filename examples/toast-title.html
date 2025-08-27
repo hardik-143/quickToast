@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickToast - Title Examples</title>
+    <link rel="stylesheet" href="../dist/css/index.css" />
+    <link rel="stylesheet" href="css/examples.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Title Examples</h1>
+      <p class="sub">
+        Demonstrates title variations: basic types, HTML titles, title-only,
+        interactive, and long titles.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Basic Title Examples</h3>
+          <div class="actions">
+            <button onclick="showBasicSuccess()">Success with Title</button>
+            <button onclick="showBasicError()">Error with Title</button>
+            <button onclick="showBasicWarning()">Warning with Title</button>
+            <button onclick="showBasicInfo()">Info with Title</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>HTML Title Examples</h3>
+          <div class="actions">
+            <button onclick="showHtmlTitle()">HTML Title</button>
+            <button onclick="showEmojiTitle()">Emoji Title</button>
+            <button onclick="showStyledTitle()">Styled Title</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Title Only Examples</h3>
+          <div class="actions">
+            <button onclick="showTitleOnly()">Title Only</button>
+            <button onclick="showTitleOnlyHtml()">Title Only (HTML)</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Interactive Title Examples</h3>
+          <div class="actions">
+            <button onclick="showInteractiveTitle()">Interactive Title</button>
+            <button onclick="showConfirmTitle()">Confirm with Title</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Long Title Examples</h3>
+          <div class="actions">
+            <button onclick="showLongTitle()">Long Title</button>
+            <button onclick="showVeryLongTitle()">Very Long Title</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top: 16px">
+        <button class="secondary" onclick="QuickToast.clear()">
+          Clear All Now
+        </button>
+        <button class="secondary" onclick="showToastCount()">
+          Show Toast Count
+        </button>
+      </div>
+    </div>
+
+    <script src="../dist/js/index.js"></script>
+
+    <script>
+      // Basic Title Examples
+      function showBasicSuccess() {
+        QuickToast({
+          title: "Success!",
+          text: "Your profile has been updated successfully.",
+          type: "success",
+        }).showToast();
+      }
+
+      function showBasicError() {
+        QuickToast({
+          title: "Error",
+          text: "Something went wrong. Please try again.",
+          type: "error",
+        }).showToast();
+      }
+
+      function showBasicWarning() {
+        QuickToast({
+          title: "Warning",
+          text: "Please review your input before proceeding.",
+          type: "warning",
+        }).showToast();
+      }
+
+      function showBasicInfo() {
+        QuickToast({
+          title: "Information",
+          text: "Here's some helpful information for you.",
+          type: "info",
+        }).showToast();
+      }
+
+      // HTML Title Examples
+      function showHtmlTitle() {
+        QuickToast({
+          title: "<b>Important</b> ⚠️",
+          text: "This is a critical notification that requires your attention.",
+          type: "warning",
+          escapeMarkup: true,
+        }).showToast();
+      }
+
+      function showEmojiTitle() {
+        QuickToast({
+          title: "🎉 Congratulations!",
+          text: "You've completed the task successfully.",
+          type: "success",
+        }).showToast();
+      }
+
+      function showStyledTitle() {
+        QuickToast({
+          title:
+            "<span style='color: #e74c3c; font-weight: bold;'>⚠️ Critical Alert</span>",
+          text: "System maintenance is required immediately.",
+          type: "danger",
+          escapeMarkup: true,
+        }).showToast();
+      }
+
+      // Title Only Examples
+      function showTitleOnly() {
+        QuickToast({
+          title: "Loading...",
+          type: "info",
+        }).showToast();
+      }
+
+      function showTitleOnlyHtml() {
+        QuickToast({
+          title: "✅ Connected Successfully",
+          type: "success",
+        }).showToast();
+      }
+
+      // Interactive Title Examples
+      function showInteractiveTitle() {
+        QuickToast({
+          title: "Save Changes",
+          text: "Do you want to save your changes?",
+          type: "info",
+          showOkayButton: true,
+          okayButtonText: "Save",
+          onOkay: () => {
+            QuickToast({
+              title: "✅ Saved",
+              text: "Your changes have been saved successfully.",
+              type: "success",
+            }).showToast();
+          },
+        }).showToast();
+      }
+
+      function showConfirmTitle() {
+        QuickToast({
+          title: "🗑️ Delete Confirmation",
+          text: "Are you sure you want to delete this item? This action cannot be undone.",
+          type: "danger",
+          showOkayButton: true,
+          okayButtonText: "Delete",
+          onOkay: () => {
+            QuickToast({
+              title: "✅ Deleted",
+              text: "The item has been deleted successfully.",
+              type: "success",
+            }).showToast();
+          },
+        }).showToast();
+      }
+
+      // Long Title Examples
+      function showLongTitle() {
+        QuickToast({
+          title: "This is a very long title that might wrap to multiple lines",
+          text: "Testing how the title handles longer text content.",
+          type: "warning",
+        }).showToast();
+      }
+
+      function showVeryLongTitle() {
+        QuickToast({
+          title:
+            "This is an extremely long title that will definitely wrap to multiple lines and test the layout behavior of the toast component",
+          text: "Testing very long title wrapping.",
+          type: "info",
+        }).showToast();
+      }
+
+      function showToastCount() {
+        const count = QuickToast.count();
+        alert(count);
+      }
+
+      // Auto-demo on page load
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          QuickToast({
+            title: "🎯 Welcome!",
+            text: "This page demonstrates QuickToast title examples. Try the buttons above!",
+            type: "success",
+            duration: 5000,
+          }).showToast();
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

@@ -1,3 +1,5 @@
 - [Home](/)
 - [Getting Started](getting-started.md)
-- [Configuration Options](configuration-options.md)
+- [Options](options.md)
+- [Declarative Actions (Data-API)](data-api.md)
+- [Events](events.md)

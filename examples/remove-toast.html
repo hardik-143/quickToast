@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickToast - Remove Toast Examples</title>
+    <link rel="stylesheet" href="../dist/css/index.css" />
+    <link rel="stylesheet" href="css/examples.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Remove Toast Examples</h1>
+      <p class="sub">
+        Covers all removal paths and <code>reason</code> payloads: timeout,
+        close_click, okay_click, destination, api_hide, api_clear, custom_event.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Timeout (auto-dismiss)</h3>
+          <div class="actions">
+            <button onclick="exTimeout()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Close Button</h3>
+          <div class="actions">
+            <button onclick="exClose()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Action Button (okay_click)</h3>
+          <div class="actions">
+            <button onclick="exOkay()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Destination Click</h3>
+          <div class="actions">
+            <button onclick="exDestination()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Programmatic Hide (api_hide)</h3>
+          <div class="actions">
+            <button onclick="exApiHide()">Show & Hide</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Global Clear (api_clear)</h3>
+          <div class="actions">
+            <button onclick="exApiClear()">Show 3 & Clear</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Custom Event (custom_event)</h3>
+          <div class="actions">
+            <button onclick="exCustomEvent()">Show & Dispatch</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Instance Clear (clear_toast)</h3>
+          <div class="actions">
+            <button onclick="exInstanceShow()">Show Instance</button>
+            <button onclick="exInstanceClear()">Clear Instance</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top: 16px">
+        <button class="secondary" onclick="QuickToast.clear()">
+          Clear All Now
+        </button>
+        <button class="secondary" onclick="logEl.innerHTML = ''">
+          Clear Log
+        </button>
+      </div>
+
+      <div class="log" id="log"></div>
+    </div>
+
+    <script src="../dist/js/index.js"></script>
+    <script>
+      const logEl = document.getElementById("log");
+
+      // Listen to global destroy (if you've added it); fallback: log from onDestroy
+      const log = (msg, data) => {
+        const line = document.createElement("div");
+        line.innerHTML = `<br/>[${new Date().toLocaleTimeString()}] <br/>&nbsp;&nbsp;&nbsp;${msg}<br/> ${
+          data ? `&nbsp;&nbsp;&nbsp;${JSON.stringify(data)}` : ""
+        }`;
+        logEl.prepend(line);
+      };
+
+      // Example: Timeout
+      function exTimeout() {
+        QuickToast({
+          title: "Auto dismiss",
+          text: "Will auto-hide after 2s",
+          duration: 2000,
+          onDestroy: (payload) => log("onDestroy(timeout)", payload),
+        }).showToast();
+      }
+
+      // Example: Close button
+      function exClose() {
+        QuickToast({
+          title: "Close me",
+          text: "Click the X to close",
+          duration: 0,
+          alwaysVisible: true,
+          onDestroy: (payload) => log("onDestroy(close_click)", payload),
+        }).showToast();
+      }
+
+      // Example: Okay button
+      function exOkay() {
+        QuickToast({
+          title: "Confirm action",
+          text: "Click OK to proceed",
+          showOkayButton: true,
+          okayButtonText: "OK",
+          onOkay: () => log("Okay clicked"),
+          onDestroy: (payload) => log("onDestroy(okay_click)", payload),
+        }).showToast();
+      }
+
+      // Example: Destination
+      function exDestination() {
+        QuickToast({
+          title: "Navigate",
+          text: "Click toast to open docs (will close first)",
+          destination: "https://example.com",
+          newWindow: true,
+          onDestroy: (payload) => log("onDestroy(destination)", payload),
+        }).showToast();
+      }
+
+      // Example: API hide
+      function exApiHide() {
+        const t = QuickToast({
+          title: "Will hide via API",
+          text: "Hiding in 1s",
+          alwaysVisible: true,
+          onDestroy: (payload) => log("onDestroy(api_hide)", payload),
+        }).showToast();
+        setTimeout(() => t.hideToast && t.hideToast(), 2000);
+      }
+
+      // Example: API clear (global)
+      function exApiClear() {
+        QuickToast({
+          text: "one",
+          onDestroy: (p) => log("A destroyed", p),
+        }).showToast();
+        QuickToast({
+          text: "two",
+          onDestroy: (p) => log("B destroyed", p),
+        }).showToast();
+        QuickToast({
+          text: "three",
+          onDestroy: (p) => log("C destroyed", p),
+        }).showToast();
+        setTimeout(() => QuickToast.clear(), 1500);
+      }
+
+      // Example: Custom event
+      function exCustomEvent() {
+        const instance = QuickToast({
+          title: "Custom event",
+          text: "Removed when custom event dispatches",
+          duration: 0,
+          alwaysVisible: true,
+          onDestroy: (payload) => log("onDestroy(custom_event)", payload),
+        }).showToast();
+
+        // find the element we just added
+        setTimeout(() => {
+          const el = document.querySelector(".quickToast");
+          if (el) el.dispatchEvent(new Event("quickToast-remove"));
+        }, 800);
+      }
+
+      // Instance show/clear demo (per-toast removal)
+      let _instanceToClear = null;
+      function exInstanceShow() {
+        _instanceToClear = QuickToast({
+          title: "Single Instance",
+          text: "Click 'Clear Instance' to remove only this toast",
+          duration: 0,
+          alwaysVisible: true,
+          onDestroy: (payload) => log("onDestroy(clear_toast)", payload),
+        }).showToast();
+        console.log(_instanceToClear)
+      }
+      function exInstanceClear() {
+        if (_instanceToClear && typeof _instanceToClear.clear === "function") {
+          _instanceToClear.clear();
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickToast - Close Options</title>
+    <link rel="stylesheet" href="../dist/css/index.css" />
+    <link rel="stylesheet" href="css/examples.css" />
+    
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Close Options (onClose)</h1>
+      <div class="grid">
+        <div class="card">
+          <h3>Sync onClose</h3>
+          <div class="actions">
+            <button onclick="exSync()">Show</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Async onClose</h3>
+          <div class="actions">
+            <button onclick="exAsync()">Show</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>onClose throws</h3>
+          <div class="actions">
+            <button onclick="exThrow()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Cancel by return false</h3>
+          <div class="actions">
+            <button onclick="exReturnFalse()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Cancel by preventDefault()</h3>
+          <div class="actions">
+            <button onclick="exPreventDefault()">Show</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top: 12px">
+        <button class="secondary" onclick="QuickToast.clear()">
+          Clear All
+        </button>
+      </div>
+
+      <div id="log" class="log"></div>
+    </div>
+
+    <script src="../dist/js/index.js"></script>
+    <script>
+      const log = (msg) => {
+        const el = document.getElementById("log");
+        const line = document.createElement("div");
+        line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+        el.prepend(line);
+      };
+
+      function exSync() {
+        QuickToast({
+          title: "Sync close",
+          text: "Close will run sync handler",
+          alwaysVisible: true,
+          onClose: () => {
+            log("onClose (sync)");
+          },
+          onDestroy: (p) => log("onDestroy reason=" + p.reason),
+        }).showToast();
+      }
+
+      function exAsync() {
+        QuickToast({
+          title: "Async close",
+          text: "Close waits for async work (300ms)",
+          alwaysVisible: true,
+          onClose: async () => {
+            log("onClose (async start)");
+            await new Promise((r) => setTimeout(r, 300));
+            log("onClose (async done)");
+          },
+          onDestroy: (p) => log("onDestroy reason=" + p.reason),
+        }).showToast();
+      }
+
+      function exThrow() {
+        QuickToast({
+          title: "Throwing close",
+          text: "Close handler throws, toast still closes",
+          alwaysVisible: true,
+          onClose: () => {
+            throw new Error("boom");
+          },
+          onDestroy: (p) => log("onDestroy reason=" + p.reason),
+        }).showToast();
+      }
+
+      function exReturnFalse() {
+        QuickToast({
+          title: "Return false",
+          text: "Close blocked by returning false",
+          alwaysVisible: true,
+          onClose: () => {
+            log("onClose -> return false (cancel)");
+            return false;
+          },
+          onDestroy: (p) => log("onDestroy reason=" + p.reason),
+        }).showToast();
+      }
+
+      function exPreventDefault() {
+        QuickToast({
+          title: "preventDefault()",
+          text: "Close blocked via event.preventDefault()",
+          alwaysVisible: true,
+          onClose: (e) => {
+            log("onClose -> preventDefault() (cancel)");
+            e.preventDefault();
+          },
+          onDestroy: (p) => log("onDestroy reason=" + p.reason),
+        }).showToast();
+      }
+    </script>
+  </body>
+</html>

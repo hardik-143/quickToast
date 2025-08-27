@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickToast - Position & Gravity</title>
+    <link rel="stylesheet" href="../dist/css/index.css" />
+    <link rel="stylesheet" href="css/examples.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Position & Gravity Examples</h1>
+      <p class="sub">
+        Show toasts in all corners, with optional offsets and a custom
+        container.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Top Right (default)</h3>
+          <div class="actions">
+            <button onclick="topRight()">Show</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Top Left</h3>
+          <div class="actions">
+            <button onclick="topLeft()">Show</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Bottom Right</h3>
+          <div class="actions">
+            <button onclick="bottomRight()">Show</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Bottom Left</h3>
+          <div class="actions">
+            <button onclick="bottomLeft()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Top Center</h3>
+          <div class="actions">
+            <button onclick="topCenter()">Show Top Center</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Bottom Center</h3>
+          <div class="actions">
+            <button onclick="bottomCenter()">Show Bottom Center</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top: 16px">
+        <button class="secondary" onclick="QuickToast.clear()">
+          Clear All
+        </button>
+      </div>
+    </div>
+
+    <script src="../dist/js/index.js"></script>
+    <script>
+      // Inject minimal helper CSS for centering inside demo zones
+      (function () {
+        const style = document.createElement("style");
+        style.textContent = `.center-helper{position:relative;min-height:120px;border:1px dashed #9ca3af;border-radius:8px;margin-top:8px}
+        .center-helper::before{content:"Center Zone";position:absolute;top:6px;right:8px;font-size:12px;color:#6b7280}
+        .center-helper .quickToast{left:50% !important;right:auto !important;transform:translateX(-50%) !important}`;
+        document.head.appendChild(style);
+      })();
+
+      function topRight() {
+        QuickToast({
+          title: "Top Right",
+          text: "position: right, gravity: top",
+          position: "right",
+          gravity: "top",
+        }).showToast();
+      }
+      function topLeft() {
+        QuickToast({
+          title: "Top Left",
+          text: "position: left, gravity: top",
+          position: "left",
+          gravity: "top",
+        }).showToast();
+      }
+      function bottomRight() {
+        QuickToast({
+          title: "Bottom Right",
+          text: "position: right, gravity: bottom",
+          position: "right",
+          gravity: "bottom",
+        }).showToast();
+      }
+      function bottomLeft() {
+        QuickToast({
+          title: "Bottom Left",
+          text: "position: left, gravity: bottom",
+          position: "left",
+          gravity: "bottom",
+        }).showToast();
+      }
+      function topCenter() {
+        QuickToast({
+          title: "Top Center",
+          text: "placement: top-center",
+          placement: "top-center",
+        }).showToast();
+      }
+      function bottomCenter() {
+        QuickToast({
+          title: "Bottom Center",
+          text: "placement: bottom-center",
+          placement: "bottom-center",
+        }).showToast();
+      }
+    </script>
+  </body>
+</html>

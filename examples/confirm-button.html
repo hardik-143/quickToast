@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickToast - Confirm Button Examples</title>
+    <link rel="stylesheet" href="../dist/css/index.css" />
+    <link rel="stylesheet" href="css/examples.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Confirm Button Examples</h1>
+      <p class="sub">
+        Demonstrates <code>showConfirmButton</code>,
+        <code>confirmButtonText</code>, <code>onConfirm</code>, and
+        <code>closeAfterOnConfirm</code>.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Basic Confirm</h3>
+          <div class="actions">
+            <button onclick="exConfirmBasic()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Auto-close After Confirm</h3>
+          <div class="actions">
+            <button onclick="exConfirmAutoClose()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Custom Confirm Text</h3>
+          <div class="actions">
+            <button onclick="exConfirmCustomText()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Confirm Triggers Action</h3>
+          <div class="actions">
+            <button onclick="exConfirmAction()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Persistent Until Confirm</h3>
+          <div class="actions">
+            <button onclick="exConfirmPersistent()">Show</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top: 16px">
+        <button class="secondary" onclick="QuickToast.clear()">
+          Clear All Now
+        </button>
+      </div>
+    </div>
+
+    <script src="../dist/js/index.js"></script>
+    <script>
+      function exConfirmBasic() {
+        QuickToast({
+          text: "Click confirm to proceed",
+          showConfirmButton: true,
+          confirmButtonText: "Confirm",
+          onConfirm: () => {
+            QuickToast({
+              text: "custom action happening on confirm button click.",
+              type: "success",
+            }).showToast();
+          },
+        }).showToast();
+      }
+
+      function exConfirmAutoClose() {
+        QuickToast({
+          text: "Toast will close immediately after confirm button is clicked",
+          showConfirmButton: true,
+          confirmButtonText: "OK",
+          closeAfterOnConfirm: true,
+          onConfirm: () => {
+            QuickToast({
+              title: "Closed",
+              text: "Toast closed after confirm.",
+              type: "info",
+            }).showToast();
+          },
+        }).showToast();
+      }
+
+      function exConfirmCustomText() {
+        QuickToast({
+          text: "Confirm button text is customized",
+          showConfirmButton: true,
+          confirmButtonText: "Proceed 🚀",
+          onConfirm: () => {
+            QuickToast({
+              text: "Custom text worked.",
+              type: "success",
+            }).showToast();
+          },
+        }).showToast();
+      }
+
+      function exConfirmAction() {
+        QuickToast({
+          text: "Confirm to save your changes",
+          showConfirmButton: true,
+          confirmButtonText: "Save",
+          closeAfterOnConfirm: true,
+          onConfirm: () => {
+            QuickToast({
+              text: "Your changes are saved.",
+              type: "success",
+            }).showToast();
+          },
+        }).showToast();
+      }
+
+      function exConfirmPersistent() {
+        QuickToast({
+          title: "Manual dismiss",
+          text: "This toast stays until you confirm",
+          duration: 0,
+          alwaysVisible: true,
+          showConfirmButton: true,
+          confirmButtonText: "Got it",
+          closeAfterOnConfirm: true,
+          onConfirm: () => {
+            QuickToast({
+              title: "Thanks",
+              text: "Dismissed via confirm.",
+              type: "info",
+            }).showToast();
+          },
+        }).showToast();
+      }
+    </script>
+  </body>
+</html>

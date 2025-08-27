@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickToast - Destination Examples</title>
+    <link rel="stylesheet" href="../dist/css/index.css" />
+    <link rel="stylesheet" href="css/examples.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Destination Examples</h1>
+      <p class="sub">
+        Demonstrates <code>destination</code>, async
+        <code>beforeDestination</code>, and
+        <code>confirmBeforeNav</code> (boolean or function).
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Basic external link</h3>
+          <div class="actions">
+            <button onclick="exBasicExternal()">Open Example.com</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Confirm before navigating (boolean)</h3>
+          <div class="actions">
+            <button onclick="exConfirmBool()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Confirm before navigating (function)</h3>
+          <div class="actions">
+            <button onclick="exConfirmFn()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Async beforeDestination (allow)</h3>
+          <div class="actions">
+            <button onclick="exAsyncAllow()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Async beforeDestination (cancel)</h3>
+          <div class="actions">
+            <button onclick="exAsyncCancel()">Show</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Combined: confirm + async guard</h3>
+          <div class="actions">
+            <button onclick="exCombined()">Show</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top: 16px">
+        <button class="secondary" onclick="QuickToast.clear()">
+          Clear All Now
+        </button>
+      </div>
+    </div>
+
+    <script src="../dist/js/index.js"></script>
+    <script>
+      function exBasicExternal() {
+        QuickToast({
+          text: "Visit example.com",
+          destination: "https://example.com",
+          newWindow: true,
+        }).showToast();
+      }
+
+      function exConfirmBool() {
+        QuickToast({
+          text: "Open docs?",
+          destination: "https://example.com/docs",
+          confirmBeforeNav: true,
+        }).showToast();
+      }
+
+      function exConfirmFn() {
+        QuickToast({
+          text: "Navigate to blog?",
+          destination: "https://example.com/blog",
+          confirmBeforeNav: (url) => window.confirm(`Proceed to ${url}?`),
+        }).showToast();
+      }
+
+      function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      function exAsyncAllow() {
+        QuickToast({
+          text: "Checking access then navigating...",
+          destination: "https://example.com/dashboard",
+          beforeDestination: async () => {
+            await delay(3000);
+            return true; // allow
+          },
+        }).showToast();
+      }
+
+      function exAsyncCancel() {
+        QuickToast({
+          text: "Will cancel after async guard",
+          destination: "https://example.com/admin",
+          beforeDestination: async () => {
+            await delay(300);
+            return false; // cancel
+          },
+        }).showToast();
+      }
+
+      function exCombined() {
+        QuickToast({
+          text: "Go to billing portal",
+          destination: "https://billing.example.com",
+          confirmBeforeNav: (url) => window.confirm(`Open ${url}?`),
+          beforeDestination: async () => {
+            await delay(250);
+            return true; // simulate passing guard
+          },
+          newWindow: true,
+        }).showToast();
+      }
+    </script>
+  </body>
+</html>
