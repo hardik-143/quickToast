@@ -45,7 +45,7 @@ This isn't just another toast library. QuickToast is developed for **production-
 
 <button data-quicktoast-random>🎉 Try Random Toast</button>
 
-## 🚀 Quick Start
+## <span>🚀</span> Quick Start
 
 <br/>
 <div class="code-wrapper">
@@ -75,13 +75,13 @@ QuickToast.info({
 
 </div>
 
-## 🔗 Related Documentation
+<!-- ## <span>🔗</span> Related Documentation
 
 - [📖 Getting Started](getting-started.md) - Setup and basic usage
 - [⚙️ Functions](functions.md) - Helper functions and shortcuts
 - [🎛️ Options](options.md) - Complete configuration reference
 - [📡 Events](events.md) - Lifecycle events and callbacks
-- [🎨 Data API](data-api.md) - Declarative toast creation
+- [🎨 Data API](data-api.md) - Declarative toast creation -->
 
 ### Using Main Constructor
 

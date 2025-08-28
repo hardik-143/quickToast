@@ -580,7 +580,7 @@ The `onDestroy` callback receives a payload object with contextual details about
   - `dismiss_click`: User clicked a custom element marked to dismiss the toast.
   - `confirm_click`: User clicked the confirm/action button.
   - `destination`: User clicked the toast to navigate (link behavior).
-  - `api_hide`: Programmatically hidden via `hideToast()`.
+  - `api_hide`: Programmatically hidden via `dismiss()`.
   - `quickToast_remove`: Removed by dispatching the `quickToast_remove` custom event.
   - `clear_toast`: Removed by calling the instance `clear()` method.
 

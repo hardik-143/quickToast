@@ -328,7 +328,7 @@ const emitCountChange = () => {
      * Builds the toast DOM element.
      * @returns {HTMLElement} The toast element.
      */
-    buildToast: function () {
+    build: function () {
       // TOAST ELEMENT
       var quickToastElement = document.createElement("div");
       quickToastElement.className = "quickToast " + this.options.rootClass;
@@ -706,7 +706,7 @@ const emitCountChange = () => {
 
     notify: function () {
       // MAKING DOM
-      this.toastElement = this.buildToast();
+      this.toastElement = this.build();
 
       if (this.toastElement === null) {
         console.error(
@@ -858,7 +858,7 @@ const emitCountChange = () => {
       }
     },
 
-    hideToast: function () {
+    dismiss: function () {
       if (this.toastElement.timeOutValue) {
         clearTimeout(this.toastElement.timeOutValue);
       }
@@ -948,6 +948,10 @@ const emitCountChange = () => {
         top: 65,
         bottom: 15,
       };
+      var topCenterOffsetSize = {
+        top: 65,
+        bottom: 15,
+      };
       var offsetSize = {
         top: 65,
         bottom: 15,
@@ -987,6 +991,14 @@ const emitCountChange = () => {
             allToasts[i].style[classUsed] = topLeftOffsetSize[classUsed] + "px";
 
             topLeftOffsetSize[classUsed] += height + offset;
+          } else if (
+            containsClass(allToasts[i], "quickToast-center") === true
+          ) {
+            // Setting the position
+            allToasts[i].style[classUsed] =
+              topCenterOffsetSize[classUsed] + "px";
+
+            topCenterOffsetSize[classUsed] += height + offset;
           } else {
             // Setting the position
             allToasts[i].style[classUsed] =

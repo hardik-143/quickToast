@@ -60,3 +60,8 @@ pre {
     width: calc(100% - 32px);
   }
 }
+
+/* sidebar  */
+.sidebar-nav .section-link span {
+  display: none ;
+}

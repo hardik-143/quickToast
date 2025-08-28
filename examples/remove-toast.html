@@ -151,7 +151,7 @@
           alwaysVisible: true,
           onDestroy: (payload) => log("onDestroy(api_hide)", payload),
         }).notify();
-        setTimeout(() => t.hideToast && t.hideToast(), 2000);
+        setTimeout(() => t.dismiss && t.dismiss(), 2000);
       }
 
       // Example: API clear (global)
