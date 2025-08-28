@@ -55,7 +55,7 @@ QuickToast({
   onDestroy: (payload) => {
     console.log("toast destoyed");
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -83,7 +83,7 @@ document.addEventListener("quickToast:timeout", (e) => {
   );
 });
 
-QuickToast({ text: "Will auto close", duration: 1000 }).showToast();
+QuickToast({ text: "Will auto close", duration: 1000 }).notify();
 ```
 
 </div>
@@ -111,16 +111,16 @@ QuickToast({
   text: "Remove the toast and check console",
   type: "warning",
   alwaysVisible: true,
-}).showToast();
+}).notify();
 QuickToast({
   text: "Remove the toast and check console",
   type: "danger",
   alwaysVisible: true,
-}).showToast();
+}).notify();
 QuickToast({
   text: "Remove the toast and check console",
   alwaysVisible: true,
-}).showToast();
+}).notify();
 setTimeout(() => QuickToast.success({ text: "Check the count" }), 500);
 setTimeout(() => QuickToast.warning({ text: "Check the count" }), 1000);
 setTimeout(() => QuickToast.error({ text: "Check the count" }), 1500);
@@ -155,7 +155,7 @@ QuickToast({
   duration: 5000,
   progress: true,
   stopOnHover: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -191,7 +191,7 @@ QuickToast({
   style: {
     transitionDuration: "1s",
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -215,7 +215,7 @@ document.addEventListener("quickToast:inserted", (e) => {
   console.log("[inserted]", e.detail.toastElement, e.detail);
 });
 
-QuickToast({ text: "Inserted demo", alwaysVisible: true }).showToast();
+QuickToast({ text: "Inserted demo", alwaysVisible: true }).notify();
 ```
 
 </div>
@@ -246,7 +246,7 @@ QuickToast({
   // style: {
   //   transitionDuration: "1s",
   // },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -282,7 +282,7 @@ QuickToast({
   duration: 5000,
   progress: true,
   stopOnHover: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -308,12 +308,12 @@ const toastInstance = QuickToast({
   text: "This toast will be removed automatically in 3 seconds",
   alwaysVisible: true,
   rootClass: "remove-via-custom-event",
-}).showToast();
+}).notify();
 
 QuickToast({
   text: "This toast will stay visible until manually closed",
   alwaysVisible: true,
-}).showToast();
+}).notify();
 
 setTimeout(() => {
   const el = toastInstance.toastElement;
@@ -341,9 +341,9 @@ While not events, these are useful when coordinating logic:
   </div>
 
 ```javascript
-QuickToast({ text: "One", alwaysvisible: true }).showToast();
-QuickToast({ text: "Two", alwaysvisible: true }).showToast();
-QuickToast({ text: "Three", alwaysvisible: true }).showToast();
+QuickToast({ text: "One", alwaysvisible: true }).notify();
+QuickToast({ text: "Two", alwaysvisible: true }).notify();
+QuickToast({ text: "Three", alwaysvisible: true }).notify();
 
 setTimeout(() => {
   alert(`Active toasts: ${QuickToast.count()}`);
@@ -362,9 +362,9 @@ setTimeout(() => {
   </div>
 
 ```javascript
-QuickToast({ text: "One", alwaysvisible: true }).showToast();
-QuickToast({ text: "Two", alwaysvisible: true }).showToast();
-QuickToast({ text: "Three", alwaysvisible: true }).showToast();
+QuickToast({ text: "One", alwaysvisible: true }).notify();
+QuickToast({ text: "Two", alwaysvisible: true }).notify();
+QuickToast({ text: "Three", alwaysvisible: true }).notify();
 
 setTimeout(() => {
   alert("Clearing all toasts...");
@@ -388,11 +388,11 @@ const t = QuickToast({
   text: "Only This Toast will get destroyed",
   alwaysVisible: true,
   onDestroy: (p) => alert("Instance destroyed"),
-}).showToast();
+}).notify();
 QuickToast({
   text: "This toast will be displayed forever",
   alwaysVisible: true,
-}).showToast();
+}).notify();
 setTimeout(() => t.clear(), 1500);
 ```
 

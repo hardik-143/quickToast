@@ -64,7 +64,7 @@
         <button class="secondary" onclick="QuickToast.clear()">
           Clear All Now
         </button>
-        <button class="secondary" onclick="showToastCount()">
+        <button class="secondary" onclick="notifyCount()">
           Show Toast Count
         </button>
       </div>
@@ -79,7 +79,7 @@
           title: "Success!",
           text: "Your profile has been updated successfully.",
           type: "success",
-        }).showToast();
+        }).notify();
       }
 
       function showBasicError() {
@@ -87,7 +87,7 @@
           title: "Error",
           text: "Something went wrong. Please try again.",
           type: "error",
-        }).showToast();
+        }).notify();
       }
 
       function showBasicWarning() {
@@ -95,7 +95,7 @@
           title: "Warning",
           text: "Please review your input before proceeding.",
           type: "warning",
-        }).showToast();
+        }).notify();
       }
 
       function showBasicInfo() {
@@ -103,7 +103,7 @@
           title: "Information",
           text: "Here's some helpful information for you.",
           type: "info",
-        }).showToast();
+        }).notify();
       }
 
       // HTML Title Examples
@@ -113,7 +113,7 @@
           text: "This is a critical notification that requires your attention.",
           type: "warning",
           escapeMarkup: true,
-        }).showToast();
+        }).notify();
       }
 
       function showEmojiTitle() {
@@ -121,7 +121,7 @@
           title: "🎉 Congratulations!",
           text: "You've completed the task successfully.",
           type: "success",
-        }).showToast();
+        }).notify();
       }
 
       function showStyledTitle() {
@@ -131,7 +131,7 @@
           text: "System maintenance is required immediately.",
           type: "danger",
           escapeMarkup: true,
-        }).showToast();
+        }).notify();
       }
 
       // Title Only Examples
@@ -139,14 +139,14 @@
         QuickToast({
           title: "Loading...",
           type: "info",
-        }).showToast();
+        }).notify();
       }
 
       function showTitleOnlyHtml() {
         QuickToast({
           title: "✅ Connected Successfully",
           type: "success",
-        }).showToast();
+        }).notify();
       }
 
       // Interactive Title Examples
@@ -162,9 +162,9 @@
               title: "✅ Saved",
               text: "Your changes have been saved successfully.",
               type: "success",
-            }).showToast();
+            }).notify();
           },
-        }).showToast();
+        }).notify();
       }
 
       function showConfirmTitle() {
@@ -179,9 +179,9 @@
               title: "✅ Deleted",
               text: "The item has been deleted successfully.",
               type: "success",
-            }).showToast();
+            }).notify();
           },
-        }).showToast();
+        }).notify();
       }
 
       // Long Title Examples
@@ -190,7 +190,7 @@
           title: "This is a very long title that might wrap to multiple lines",
           text: "Testing how the title handles longer text content.",
           type: "warning",
-        }).showToast();
+        }).notify();
       }
 
       function showVeryLongTitle() {
@@ -199,10 +199,10 @@
             "This is an extremely long title that will definitely wrap to multiple lines and test the layout behavior of the toast component",
           text: "Testing very long title wrapping.",
           type: "info",
-        }).showToast();
+        }).notify();
       }
 
-      function showToastCount() {
+      function notifyCount() {
         const count = QuickToast.count();
         alert(count);
       }
@@ -215,7 +215,7 @@
             text: "This page demonstrates QuickToast title examples. Try the buttons above!",
             type: "success",
             duration: 5000,
-          }).showToast();
+          }).notify();
         }, 1000);
       });
     </script>

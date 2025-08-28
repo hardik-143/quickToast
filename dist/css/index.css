@@ -10,6 +10,7 @@
   --quickToast-text-color: #343638;
   --quickToast-success: #5ebb5b;
   --quickToast-danger: #ed3a3e;
+  --quickToast-error: #ed3a3e;
   --quickToast-info: #0065f8;
   --quickToast-warning: #ffc446;
   --quickToast-default-width: 400px;
@@ -76,6 +77,15 @@
 }
 .quickToast.quickToast-danger .quickToast-progress {
   background: var(--quickToast-danger);
+}
+.quickToast.quickToast-error {
+  border-color: var(--quickToast-error);
+}
+.quickToast.quickToast-error svg.icon-svg path {
+  fill: var(--quickToast-error);
+}
+.quickToast.quickToast-error .quickToast-progress {
+  background: var(--quickToast-error);
 }
 .quickToast.quickToast-info {
   border-color: var(--quickToast-info);

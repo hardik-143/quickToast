@@ -701,7 +701,7 @@ const emitCountChange = () => {
       return quickToastElement;
     },
 
-    showToast: function () {
+    notify: function () {
       // MAKING DOM
       this.toastElement = this.buildToast();
 
@@ -1013,19 +1013,19 @@ const emitCountChange = () => {
 
   // Console utility methods for easier debugging and testing
   (QuickToast.info = function (options = {}) {
-    return QuickToast({ text, type: "info", ...options }).showToast();
+    return QuickToast({ type: "info", ...options }).notify();
   }),
     (QuickToast.success = function (options = {}) {
-      return QuickToast({ type: "success", ...options }).showToast();
+      return QuickToast({ type: "success", ...options }).notify();
     }),
     (QuickToast.warning = function (options = {}) {
-      return QuickToast({ type: "warning", ...options }).showToast();
+      return QuickToast({ type: "warning", ...options }).notify();
     }),
     (QuickToast.error = function (options = {}) {
-      return QuickToast({ type: "danger", ...options }).showToast();
+      return QuickToast({ type: "danger", ...options }).notify();
     }),
     (QuickToast.danger = function (options = {}) {
-      return QuickToast({ type: "danger", ...options }).showToast();
+      return QuickToast({ type: "danger", ...options }).notify();
     }),
     (QuickToast.demo = function () {
       QuickToast.info({ text: "This is an info message" });

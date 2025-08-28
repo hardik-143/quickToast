@@ -47,7 +47,7 @@ Use a simple string to display a basic notification.
 ```javascript
 QuickToast({
   text: "A Plain Text Notification",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -68,7 +68,7 @@ QuickToast({
   text: "<b>Success!</b> 🎉 Your content has been <span style='color:green;'>added</span>.",
   type: "success",
   escapeMarkup: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -89,7 +89,7 @@ QuickToast({
   title: "Success",
   text: "Your profile has been updated successfully!",
   type: "success",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -111,7 +111,7 @@ QuickToast({
   text: "Something went wrong. Please try again.",
   type: "error",
   escapeMarkup: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -133,7 +133,7 @@ nodeHTML.innerHTML =
   "<b>Congratulations</b> 🎉 <br/> You've displayed <u>toast</u> with <i>custom html</i> content ";
 QuickToast({
   node: nodeHTML,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -157,7 +157,7 @@ Set the duration for which the toast notification will be visible.
 QuickToast({
   text: "This toast will disappear after 5 seconds",
   duration: 5000,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -174,7 +174,7 @@ QuickToast({
   text: "This Toast stays visible for 15 seconds",
   duration: 15000,
   type: "danger",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -198,7 +198,7 @@ QuickToast({
   duration: 5000,
   type: "error",
   progress: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -221,7 +221,7 @@ QuickToast({
   text: "This toast will remain visible until closed",
   alwaysVisible: true,
   type: "info",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -248,7 +248,7 @@ QuickToast({
   type: "error",
   progress: true,
   stopOnHover: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -280,32 +280,32 @@ Let's see some examples of how to use these types in your toast notifications.
 QuickToast({
   text: "Operation successful!",
   type: "success",
-}).showToast();
+}).notify();
 
 QuickToast({
   text: "An error occurred.",
   type: "error",
-}).showToast();
+  alwaysVisible: true,
+}).notify();
 
 QuickToast({
   text: "Here is some information.",
   type: "info",
-}).showToast();
+}).notify();
 
 QuickToast({
   text: "This is a warning!",
   type: "warning",
-}).showToast();
+}).notify();
 
 QuickToast({
   text: "Critical error! Action required.",
   type: "danger",
-}).showToast();
+  alwaysVisible: true,
+}).notify();
 ```
 
 </div>
-
-!> "error" and "danger" use the same UI styles. They are provided as separate types to differentiate semantics and usage contexts.
 
 ---
 
@@ -322,7 +322,7 @@ this configure where the toast redirects the user
 QuickToast({
   text: "Click here to go to Google",
   destination: "https://www.google.com",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -345,7 +345,7 @@ QuickToast({
   text: "Visit our documentation",
   destination: "https://example.com/docs",
   newWindow: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -369,7 +369,7 @@ QuickToast({
   text: "Go to external resource",
   destination: "https://example.com",
   confirmBeforeNav: (url) => window.confirm(`Open ${url}?`),
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -394,7 +394,7 @@ QuickToast({
   beforeDestination: () => {
     alert("Navigating to destination");
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -426,7 +426,7 @@ QuickToast({
     const ok = await myAsyncGuard();
     return ok; // cancel if false
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -453,7 +453,7 @@ QuickToast({
   // - role="link",
   // tabindex="0"
   // - aria-label based on hostname (e.g., example.com)
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -475,7 +475,7 @@ decides whether the close button is shown on the toast.
 QuickToast({
   text: "This toast has no close button and will disappear after 3 seconds",
   close: false,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -494,7 +494,7 @@ QuickToast({
     await new Promise((r) => setTimeout(r, 300));
     console.log("close completed");
   },
-}).showToast();
+}).notify();
 ```
 
 Notes:
@@ -517,21 +517,21 @@ QuickToast({
   onClose: () => {
     alert("close button clicked");
   },
-}).showToast();
+}).notify();
 
 // 2) Cancel by returning false
 QuickToast({
   text: "Return false to block close",
   alwaysVisible: true,
   onClose: () => false,
-}).showToast();
+}).notify();
 
 // 3) Cancel by preventDefault
 QuickToast({
   text: "preventDefault() to block close",
   alwaysVisible: true,
   onClose: (e) => e.preventDefault(),
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -553,7 +553,7 @@ QuickToast({
   onDestroy: (payload) => {
     alert("Toast was removed");
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -611,7 +611,7 @@ QuickToast({
   onClick: () => {
     alert("Toast was clicked");
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -633,7 +633,7 @@ Set this option to `true` if you want to display an action button
 QuickToast({
   text: "This toast has an confirm button",
   showConfirmButton: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -656,7 +656,7 @@ QuickToast({
   text: "This toast has a custom text in confirm button",
   showConfirmButton: true,
   confirmButtonText: "Got it!",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -679,7 +679,7 @@ QuickToast({
   onConfirm: () => {
     alert("Confirm button was clicked");
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -705,7 +705,7 @@ QuickToast({
   onConfirm: () => {
     alert("Confirm button was clicked");
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -732,7 +732,7 @@ Available positions are:
 QuickToast({
   text: "This toast is positioned on the left",
   position: "left",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -759,7 +759,7 @@ Available positions are:
 QuickToast({
   text: "This toast is positioned at the bottom",
   gravity: "bottom",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -776,7 +776,7 @@ QuickToast({
   text: "This toast is positioned at the bottom-left",
   gravity: "bottom",
   position: "left",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -807,17 +807,17 @@ Valid values:
 QuickToast({
   text: "Top Center via placement",
   placement: "top-center",
-}).showToast();
+}).notify();
 
 QuickToast({
   text: "Bottom Left via placement",
   placement: "bottom-left",
-}).showToast();
+}).notify();
 
 QuickToast({
   text: "Bottom Center via placement",
   placement: "bottom-center",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -847,7 +847,7 @@ custom class names for the root element of the toast
 QuickToast({
   text: "This toast has a custom root class",
   rootClass: "my-custom-toast",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -870,7 +870,7 @@ Set this option to `true` if you want to escape HTML markup in the toast text.
 ```javascript
 QuickToast({
   text: "This toast has <i>escaped markup</i>",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -886,7 +886,7 @@ QuickToast({
 QuickToast({
   text: "This toast has <i>escaped markup</i>",
   escapeMarkup: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -914,7 +914,7 @@ Available values are:
 QuickToast({
   text: "This toast has a custom aria-live value",
   ariaLive: "assertive",
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -938,7 +938,7 @@ QuickToast({
     background: "linear-gradient(to right, #2e32ffff, #7b97feff)",
     color: "#000",
   },
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -962,7 +962,7 @@ QuickToast({
   text: "This toast will be displayed in a custom container <br/> you can open <b>developer tools</b> to inspect it",
   selector: "#my-custom-container",
   escapeMarkup: true,
-}).showToast();
+}).notify();
 ```
 
 </div>

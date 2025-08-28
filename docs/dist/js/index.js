@@ -50,7 +50,7 @@ const __ICONS = {
       <path d="M20 10C20 15.5229 15.5229 20 10 20C4.47714 20 0 15.5229 0 10C0 4.47714 4.47714 0 10 0C15.5229 0 20 4.47714 20 10ZM8.84331 15.2949L16.2627 7.87556C16.5146 7.62363 16.5146 7.21512 16.2627 6.96319L15.3503 6.05081C15.0983 5.79883 14.6898 5.79883 14.4379 6.05081L8.3871 12.1015L5.56214 9.27657C5.3102 9.02464 4.90169 9.02464 4.64972 9.27657L3.73734 10.189C3.4854 10.4409 3.4854 10.8494 3.73734 11.1013L7.93089 15.2949C8.18286 15.5469 8.59133 15.5469 8.84331 15.2949Z" fill="currentColor"/>
     </svg>
     `,
-  danger: `
+  error: `
     <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-svg">
       <path d="M20 10.5C20 16.0241 15.5225 20.5 10 20.5C4.47754 20.5 0 16.0241 0 10.5C0 4.97915 4.47754 0.5 10 0.5C15.5225 0.5 20 4.97915 20 10.5ZM10 12.5161C8.97561 12.5161 8.14516 13.3466 8.14516 14.371C8.14516 15.3954 8.97561 16.2258 10 16.2258C11.0244 16.2258 11.8548 15.3954 11.8548 14.371C11.8548 13.3466 11.0244 12.5161 10 12.5161ZM8.23899 5.84895L8.5381 11.3328C8.5521 11.5894 8.76427 11.7903 9.02125 11.7903H10.9788C11.2357 11.7903 11.4479 11.5894 11.4619 11.3328L11.761 5.84895C11.7761 5.57177 11.5554 5.33871 11.2779 5.33871H8.7221C8.44452 5.33871 8.22387 5.57177 8.23899 5.84895Z" fill="currentColor"/>
     </svg>
@@ -65,6 +65,10 @@ const __ICONS = {
       <path d="M0 10.5C0 4.9759 4.4775 0.5 10 0.5C15.5225 0.5 20 4.9759 20 10.5C20 16.0209 15.5225 20.5 10 20.5C4.4775 20.5 0 16.0209 0 10.5ZM10 8.4839C11.0244 8.4839 11.8548 7.6534 11.8548 6.629C11.8548 5.6046 11.0244 4.7742 10 4.7742C8.9756 4.7742 8.1452 5.6046 8.1452 6.629C8.1452 7.6534 8.9756 8.4839 10 8.4839ZM11.761 15.1511L11.4619 9.6672C11.4479 9.4106 11.2357 9.2097 10.9788 9.2097H9.0212C8.7643 9.2097 8.5521 9.4106 8.5381 9.6672L8.239 15.1511C8.2239 15.4282 8.4446 15.6613 8.7221 15.6613L11.2779 15.6613C11.5555 15.6613 11.7761 15.4282 11.761 15.1511Z" fill="currentColor"/>
     </svg>
     `,
+  danger: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" class="icon-svg">
+<path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM15.36 14.3C15.65 14.59 15.65 15.07 15.36 15.36C15.21 15.51 15.02 15.58 14.83 15.58C14.64 15.58 14.45 15.51 14.3 15.36L12 13.06L9.7 15.36C9.55 15.51 9.36 15.58 9.17 15.58C8.98 15.58 8.79 15.51 8.64 15.36C8.35 15.07 8.35 14.59 8.64 14.3L10.94 12L8.64 9.7C8.35 9.41 8.35 8.93 8.64 8.64C8.93 8.35 9.41 8.35 9.7 8.64L12 10.94L14.3 8.64C14.59 8.35 15.07 8.35 15.36 8.64C15.65 8.93 15.65 9.41 15.36 9.7L13.06 12L15.36 14.3Z" fill="currentColor"/>
+</svg>`,
 };
 
 const __CLOSE_ICON = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -328,8 +332,7 @@ const emitCountChange = () => {
       // TOAST ELEMENT
       var quickToastElement = document.createElement("div");
       quickToastElement.className = "quickToast " + this.options.rootClass;
-      var OPTION_TYPE =
-        this.options.type == "error" ? "danger" : this.options.type;
+      var OPTION_TYPE = this.options.type;
       // CLASSES FOR TOAST TYPE, POSITION AND GRAVITY
       quickToastElement.className += " quickToast-" + OPTION_TYPE; // Assigningn type of toast
       quickToastElement.className += " quickToast-" + this.options.position; // Assigning position to the toast [Right | Left]
@@ -701,7 +704,7 @@ const emitCountChange = () => {
       return quickToastElement;
     },
 
-    showToast: function () {
+    notify: function () {
       // MAKING DOM
       this.toastElement = this.buildToast();
 
@@ -1013,19 +1016,19 @@ const emitCountChange = () => {
 
   // Console utility methods for easier debugging and testing
   (QuickToast.info = function (options = {}) {
-    return QuickToast({ text, type: "info", ...options }).showToast();
+    return QuickToast({ type: "info", ...options }).notify();
   }),
     (QuickToast.success = function (options = {}) {
-      return QuickToast({ type: "success", ...options }).showToast();
+      return QuickToast({ type: "success", ...options }).notify();
     }),
     (QuickToast.warning = function (options = {}) {
-      return QuickToast({ type: "warning", ...options }).showToast();
+      return QuickToast({ type: "warning", ...options }).notify();
     }),
     (QuickToast.error = function (options = {}) {
-      return QuickToast({ type: "danger", ...options }).showToast();
+      return QuickToast({ type: "danger", ...options }).notify();
     }),
     (QuickToast.danger = function (options = {}) {
-      return QuickToast({ type: "danger", ...options }).showToast();
+      return QuickToast({ type: "danger", ...options }).notify();
     }),
     (QuickToast.demo = function () {
       QuickToast.info({ text: "This is an info message" });
@@ -1034,12 +1037,16 @@ const emitCountChange = () => {
         500
       );
       setTimeout(
-        () => QuickToast.warning({ text: "This is a warning message" }),
+        () => QuickToast.danger({ text: "This is an danger message" }),
         1000
       );
       setTimeout(
-        () => QuickToast.error({ text: "This is an error message" }),
+        () => QuickToast.warning({ text: "This is a warning message" }),
         1500
+      );
+      setTimeout(
+        () => QuickToast.error({ text: "This is an error message" }),
+        2000
       );
     }),
     (QuickToast.clear = function () {

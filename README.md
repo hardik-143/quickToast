@@ -23,7 +23,7 @@
 QuickToast({
   text: "Hello, this is a notification!",
   duration: 3000, // duration in milliseconds
-}).showToast();
+}).notify();
 ```
 
 ---
@@ -31,7 +31,7 @@ QuickToast({
 ## How It Works
 
 1. Call QuickToast() – Pass an options object with your desired message, duration, and type.
-2. Show Toast – Use .showToast() to display the notification.
+2. Show Toast – Use .notify() to display the notification.
 3. Customize – Override default options for styling, HTML content, or behavior.
 
 ## Features

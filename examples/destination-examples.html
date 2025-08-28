@@ -74,7 +74,7 @@
           text: "Visit example.com",
           destination: "https://example.com",
           newWindow: true,
-        }).showToast();
+        }).notify();
       }
 
       function exConfirmBool() {
@@ -82,7 +82,7 @@
           text: "Open docs?",
           destination: "https://example.com/docs",
           confirmBeforeNav: true,
-        }).showToast();
+        }).notify();
       }
 
       function exConfirmFn() {
@@ -90,7 +90,7 @@
           text: "Navigate to blog?",
           destination: "https://example.com/blog",
           confirmBeforeNav: (url) => window.confirm(`Proceed to ${url}?`),
-        }).showToast();
+        }).notify();
       }
 
       function delay(ms) {
@@ -105,7 +105,7 @@
             await delay(3000);
             return true; // allow
           },
-        }).showToast();
+        }).notify();
       }
 
       function exAsyncCancel() {
@@ -116,7 +116,7 @@
             await delay(300);
             return false; // cancel
           },
-        }).showToast();
+        }).notify();
       }
 
       function exCombined() {
@@ -129,7 +129,7 @@
             return true; // simulate passing guard
           },
           newWindow: true,
-        }).showToast();
+        }).notify();
       }
     </script>
   </body>

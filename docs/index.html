@@ -122,7 +122,7 @@
         let positionRandom = Math.random() < 0.5 ? "left" : "right";
         let obj =
           toastifyObjArray[Math.floor(Math.random() * toastifyObjArray.length)];
-        QuickToast({ ...obj, position: positionRandom }).showToast();
+        QuickToast({ ...obj, position: positionRandom }).notify();
       });
       document.addEventListener("click", function (e) {
         // "[data-quicktoast]"
@@ -134,7 +134,7 @@
         if (jsCode) {
           let codeElement = jsCode.querySelector("code");
           let code = codeElement.textContent.trim();
-          if (/QuickToast\s*\(/.test(code)) {
+          if (/QuickToast\s*(?:\(|\.)/.test(code)) {
             try {
               new Function(code)();
             } catch (err) {

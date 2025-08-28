@@ -26,7 +26,7 @@ QuickToast({
   text: '<button data-dismiss-self="true">Close this toast</button>',
   escapeMarkup: true,
   alwaysVisible: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -46,7 +46,7 @@ QuickToast({
   onConfirm: () => alert("Confirmed!"),
   text: '<a href="/data-api" data-confirm-click="true">Confirm via link</a>',
   escapeMarkup: true,
-}).showToast();
+}).notify();
 ```
 
 </div>
@@ -69,7 +69,7 @@ QuickToast({
   node: el,
   alwaysVisible: true,
   close: false,
-}).showToast();
+}).notify();
 ```
 
 </div>

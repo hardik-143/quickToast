@@ -6,7 +6,6 @@
     <title>QuickToast - Close Options</title>
     <link rel="stylesheet" href="../dist/css/index.css" />
     <link rel="stylesheet" href="css/examples.css" />
-    
   </head>
   <body>
     <div class="wrap">
@@ -73,7 +72,7 @@
             log("onClose (sync)");
           },
           onDestroy: (p) => log("onDestroy reason=" + p.reason),
-        }).showToast();
+        }).notify();
       }
 
       function exAsync() {
@@ -87,7 +86,7 @@
             log("onClose (async done)");
           },
           onDestroy: (p) => log("onDestroy reason=" + p.reason),
-        }).showToast();
+        }).notify();
       }
 
       function exThrow() {
@@ -99,7 +98,7 @@
             throw new Error("boom");
           },
           onDestroy: (p) => log("onDestroy reason=" + p.reason),
-        }).showToast();
+        }).notify();
       }
 
       function exReturnFalse() {
@@ -112,7 +111,7 @@
             return false;
           },
           onDestroy: (p) => log("onDestroy reason=" + p.reason),
-        }).showToast();
+        }).notify();
       }
 
       function exPreventDefault() {
@@ -125,7 +124,7 @@
             e.preventDefault();
           },
           onDestroy: (p) => log("onDestroy reason=" + p.reason),
-        }).showToast();
+        }).notify();
       }
     </script>
   </body>

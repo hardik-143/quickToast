@@ -106,7 +106,7 @@
           text: "Will auto-hide after 2s",
           duration: 2000,
           onDestroy: (payload) => log("onDestroy(timeout)", payload),
-        }).showToast();
+        }).notify();
       }
 
       // Example: Close button
@@ -117,7 +117,7 @@
           duration: 0,
           alwaysVisible: true,
           onDestroy: (payload) => log("onDestroy(close_click)", payload),
-        }).showToast();
+        }).notify();
       }
 
       // Example: Okay button
@@ -129,7 +129,7 @@
           okayButtonText: "OK",
           onOkay: () => log("Okay clicked"),
           onDestroy: (payload) => log("onDestroy(okay_click)", payload),
-        }).showToast();
+        }).notify();
       }
 
       // Example: Destination
@@ -140,7 +140,7 @@
           destination: "https://example.com",
           newWindow: true,
           onDestroy: (payload) => log("onDestroy(destination)", payload),
-        }).showToast();
+        }).notify();
       }
 
       // Example: API hide
@@ -150,7 +150,7 @@
           text: "Hiding in 1s",
           alwaysVisible: true,
           onDestroy: (payload) => log("onDestroy(api_hide)", payload),
-        }).showToast();
+        }).notify();
         setTimeout(() => t.hideToast && t.hideToast(), 2000);
       }
 
@@ -159,15 +159,15 @@
         QuickToast({
           text: "one",
           onDestroy: (p) => log("A destroyed", p),
-        }).showToast();
+        }).notify();
         QuickToast({
           text: "two",
           onDestroy: (p) => log("B destroyed", p),
-        }).showToast();
+        }).notify();
         QuickToast({
           text: "three",
           onDestroy: (p) => log("C destroyed", p),
-        }).showToast();
+        }).notify();
         setTimeout(() => QuickToast.clear(), 1500);
       }
 
@@ -179,7 +179,7 @@
           duration: 0,
           alwaysVisible: true,
           onDestroy: (payload) => log("onDestroy(custom_event)", payload),
-        }).showToast();
+        }).notify();
 
         // find the element we just added
         setTimeout(() => {
@@ -197,8 +197,8 @@
           duration: 0,
           alwaysVisible: true,
           onDestroy: (payload) => log("onDestroy(clear_toast)", payload),
-        }).showToast();
-        console.log(_instanceToClear)
+        }).notify();
+        console.log(_instanceToClear);
       }
       function exInstanceClear() {
         if (_instanceToClear && typeof _instanceToClear.clear === "function") {
