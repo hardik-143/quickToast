@@ -1,45 +1,46 @@
-# QuickToast
+# 🚀 QuickToast
 
-> QuickToast is a lightweight, customizable JavaScript library to display toast notifications on your web pages. It’s simple to use and requires no dependencies.
+> **🎉 The toast library that makes other toasts feel like stale bread!** Built with real-world applications in mind, QuickToast goes beyond simple notifications to deliver a complete user feedback system that actually makes sense.
 
----
-
-## Installation
-
-```html
-<!-- QuickToast CSS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/hardik-143/quickToast/dist/css/index.min.css"
-/>
-
-<!-- QuickToast JS -->
-<script src="https://cdn.jsdelivr.net/gh/hardik-143/quickToast/dist/js/index.min.js"></script>
-```
-
-## Usage
-
-```javascript
-QuickToast({
-  text: "Hello, this is a notification!",
-  duration: 3000, // duration in milliseconds
-}).notify();
-```
+!> **🔥 Pro tip**: If you've ever thought "I wish this toast could do more than just disappear," then congratulations - you've found your soulmate! QuickToast is like that friend who always has your back, but for notifications. ⚡
 
 ---
 
-## How It Works
+## **What Makes QuickToast Special?** <!-- {docsify-ignore} -->
 
-1. Call QuickToast() – Pass an options object with your desired message, duration, and type.
-2. Show Toast – Use .notify() to display the notification.
-3. Customize – Override default options for styling, HTML content, or behavior.
+This isn't just another toast library. QuickToast is developed for **production-grade applications** with features that actually matter:
 
-## Features
+### <span>🎯</span> Smart Positioning
 
-- Lightweight & Fast – Minimal footprint, quick load times.
-- Customizable – Control duration, position, styling, and more.
-- No Dependencies – Pure JavaScript, works out of the box.
-- Multiple Toast Types – Success, error, info, warning, or custom messages.
-- HTML Support – Add rich content using HTML nodes.
+- **Flexible positioning**: Use shorthand like `"tl"` (top-left) or full `"top-center"`
+- **Responsive design**: Automatically centers on small screens (≤360px)
 
-> QuickToast is perfect for alerts, notifications, and user feedback. Add it to any project and enhance the UI without extra dependencies.
+### <span>🔄</span> Advanced Lifecycle Control
+
+- **Event-driven architecture**: Hook into `onClose`, `onDestroy`, `onClick`
+- **Async support**: `onClose`, `beforeDestination` supports async operations
+- **Smart timeouts**: Pause auto-dismiss on hover with `stopOnHover`
+- **Global events**: Listen to `quickToast:destroy`, `quickToast:timeout`, `quickToast:count-change`
+
+### <span>🎨</span> Rich Content & Styling
+
+- **HTML nodes**: Display complex content, forms, or custom components
+- **Custom styling**: Override any CSS property with the `style` object
+- **Type-based theming**: 5 built-in types with custom SVG icons
+- **Progress bars**: Show loading states with built-in progress support
+
+### <span>🚀</span> Developer Experience
+
+- **Zero dependencies**: Pure vanilla JavaScript
+- **Helper functions**: `QuickToast.info()`, `QuickToast.success()`, etc.
+- **Using Main Constructor** : `QuickToast(options).notify()`
+- **Console utilities**: `QuickToast.demo()`, `QuickToast.clear()`, `QuickToast.count()`
+
+### <span>🌐</span> Navigation & Actions
+
+- **Click destinations**: Navigate users with `destination` option
+- **Confirmation buttons**: Action buttons with custom callbacks
+- **New window support**: Open links in new tabs
+- **Pre-navigation hooks**: `beforeDestination` callback for validation
+
+---

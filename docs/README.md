@@ -1,10 +1,16 @@
 # 🚀 QuickToast
 
-> **The feature-rich toast library you'll ever need.** Built with real-world applications in mind, QuickToast goes beyond simple notifications to deliver a complete user feedback system.
+> **🎉 The feature-rich toast library you'll ever need.** Built with real-world applications in mind, QuickToast goes beyond simple notifications to deliver a complete user feedback system.
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **🔥 Pro tip**: If you've ever thought "I wish this toast could do more than just disappear," then congratulations - you've found your soulmate! QuickToast is like that friend who always has your back, but for notifications. ⚡
+
+</div>
 
 ---
 
-## **What Makes QuickToast Special?**
+## **What Makes QuickToast Special?** <!-- {docsify-ignore} -->
 
 This isn't just another toast library. QuickToast is developed for **production-grade applications** with features that actually matter:
 
@@ -24,7 +30,7 @@ This isn't just another toast library. QuickToast is developed for **production-
 
 - **HTML nodes**: Display complex content, forms, or custom components
 - **Custom styling**: Override any CSS property with the `style` object
-- **Type-based theming**: 5 built-in types with custom SVG icons
+- **Type-based theming**: 5 built-in types with their SVG icons
 - **Progress bars**: Show loading states with built-in progress support
 
 ### <span>🚀</span> Developer Experience
@@ -43,38 +49,6 @@ This isn't just another toast library. QuickToast is developed for **production-
 
 ---
 
-<button data-quicktoast-random>🎉 Try Random Toast</button>
-
-## <span>🚀</span> Quick Start
-
-<br/>
-<div class="code-wrapper">
-  <div>
-    <button data-quicktoast>Show Toast</button>
-  </div>
-
-```javascript
-// Simple success toast
-QuickToast.success({
-  text: "File uploaded successfully!",
-  duration: 5000,
-});
-
-// Rich content with actions
-QuickToast.info({
-  text: "New update available!",
-  title: "Update Ready",
-  alwaysVisible: true,
-  showConfirmButton: true,
-  onConfirm: () => {
-    alert("Confirm Button Clicked");
-  },
-  closeAfterOnConfirm: true,
-});
-```
-
-</div>
-
 <!-- ## <span>🔗</span> Related Documentation
 
 - [📖 Getting Started](getting-started.md) - Setup and basic usage
@@ -82,48 +56,3 @@ QuickToast.info({
 - [🎛️ Options](options.md) - Complete configuration reference
 - [📡 Events](events.md) - Lifecycle events and callbacks
 - [🎨 Data API](data-api.md) - Declarative toast creation -->
-
-### Using Main Constructor
-
-<div class="code-wrapper">
-  <div>
-    <button data-quicktoast>Show Constructor Toast</button>
-  </div>
-
-```javascript
-// Using the main constructor with type parameter
-QuickToast({
-  text: "This is an info message",
-  type: "info",
-  duration: 3000,
-}).notify();
-
-// Error toast with constructor
-QuickToast({
-  text: "Something went wrong",
-  type: "error",
-  duration: 6000,
-}).notify();
-```
-
-</div>
-
-### Console Utilities
-
-<div class="code-wrapper">
-  <div>
-    <button data-quicktoast>Try Console Utilities</button>
-  </div>
-
-```javascript
-// Demo multiple toasts
-QuickToast.demo();
-
-// Get count of active toasts
-setTimeout(() => {
-  const activeCount = QuickToast.count();
-  alert(`Active toasts: ${activeCount}`);
-}, 2500);
-```
-
-</div>

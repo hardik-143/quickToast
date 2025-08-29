@@ -1,35 +1,43 @@
-# Options
+# 🎛️ **Options**
 
-> Here are some example configuration options for QuickToast:
+> **🎯 The Ultimate QuickToast Configuration Guide** - Because sometimes you need more control than just "show me a toast, any toast!"
 
-| Option              | Type          | Default       | Description                                                                   |
-| ------------------- | ------------- | ------------- | ----------------------------------------------------------------------------- |
-| text                | `string`      | -             | The text content to display in the toast notification                         |
-| title               | `string`      | -             | The title to display in the toast notification                                |
-| node                | `HTMLElement` | -             | Custom DOM element for complex toast content (overrides `text`)               |
-| duration            | `number`      | `3000`        | Duration in milliseconds before toast disappears                              |
-| alwaysVisible       | `boolean`     | `false`       | Keep toast visible until manually closed                                      |
-| progress            | `boolean`     | `false`       | Show progress bar indicating remaining time                                   |
-| stopOnHover         | `boolean`     | `false`       | Pause auto-dismiss when hovering over toast                                   |
-| type                | `string`      | `"info"`      | Toast type: `"success"`, `"error"`, `"info"`, `"warning"`, `"danger"`         |
-| destination         | `string`      | -             | URL to redirect to when toast is clicked                                      |
-| newWindow           | `boolean`     | `false`       | Open destination in new window/tab                                            |
-| close               | `boolean`     | `true`        | Show close button on toast                                                    |
-| onDestroy           | `function`    | -             | Callback when toast is removed                                                |
-| beforeDestination   | `function`    | -             | Callback before navigating to destination                                     |
-| onClick             | `function`    | -             | Callback when toast is clicked (only without destination)                     |
-| showConfirmButton   | `boolean`     | `false`       | Display an action button on toast                                             |
-| confirmButtonText   | `string`      | `"Confirm"`   | Custom text for the confirm button                                            |
-| onConfirm           | `function`    | -             | Callback when confirm button is clicked                                       |
-| closeAfterOnConfirm | `boolean`     | `false`       | Remove toast after confirm button is clicked                                  |
-| placement           | `string`      | `"top-right"` | Shorthand: `"(top \| bottom)-(left \| center \| right)"`(e.g.,`"top-center"`) |
-| position            | `string`      | `"right"`     | Horizontal position: `"left"` or `"right"`                                    |
-| gravity             | `string`      | `"top"`       | Vertical position: `"top"` or `"bottom"`                                      |
-| rootClass           | `string`      | -             | Custom CSS class for toast root element                                       |
-| escapeMarkup        | `boolean`     | `false`       | Escape HTML markup in toast text                                              |
-| ariaLive            | `string`      | `"polite"`    | ARIA live region: `"off"`, `"polite"`, `"assertive"`                          |
-| style               | `object`      | -             | Custom CSS styles for toast                                                   |
-| selector            | `string`      | `"body"`      | Custom selector for toast container                                           |
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: Think of these options as your toast's personality traits. Want a shy toast that disappears quickly? Set `duration: 1000`. Want a clingy toast that never leaves? Set `alwaysVisible: true`. The power is yours! ⚡
+
+</div>
+
+---
+
+| Option                  | Type          | Default     | Description                                                                   |
+| ----------------------- | ------------- | ----------- | ----------------------------------------------------------------------------- |
+| **text**                | `string`      | -           | The text content to display in the toast notification                         |
+| **title**               | `string`      | -           | The title to display in the toast notification                                |
+| **node**                | `HTMLElement` | -           | Custom DOM element for complex toast content (overrides `text`)               |
+| **duration**            | `number`      | `3000`      | Duration in milliseconds before toast disappears                              |
+| **alwaysVisible**       | `boolean`     | `false`     | Keep toast visible until manually closed                                      |
+| **progress**            | `boolean`     | `false`     | Show progress bar indicating remaining time                                   |
+| **stopOnHover**         | `boolean`     | `false`     | Pause auto-dismiss when hovering over toast                                   |
+| **type**                | `string`      | `"info"`    | Toast type: `"success"`, `"error"`, `"info"`, `"warning"`, `"danger"`         |
+| **destination**         | `string`      | -           | URL to redirect to when toast is clicked                                      |
+| **newWindow**           | `boolean`     | `false`     | Open destination in new window/tab                                            |
+| **close**               | `boolean`     | `true`      | Show close button on toast                                                    |
+| **onDestroy**           | `function`    | -           | Callback when toast is removed                                                |
+| **beforeDestination**   | `function`    | -           | Callback before navigating to destination                                     |
+| **onClick**             | `function`    | -           | Callback when toast is clicked (only without destination)                     |
+| **showConfirmButton**   | `boolean`     | `false`     | Display an action button on toast                                             |
+| **confirmButtonText**   | `string`      | `"Confirm"` | Custom text for the confirm button                                            |
+| **onConfirm**           | `function`    | -           | Callback when confirm button is clicked                                       |
+| **closeAfterOnConfirm** | `boolean`     | `false`     | Remove toast after confirm button is clicked                                  |
+| **position**            | `string`      | `"right"`   | Horizontal position: `"left"` or `"right"`                                    |
+| **gravity**             | `string`      | `"top"`     | Vertical position: `"top"` or `"bottom"`                                      |
+| **placement**           | `string`      | -           | Shorthand: `"(top \| bottom)-(left \| center \| right)"`(e.g.,`"top-center"`) |
+| **rootClass**           | `string`      | -           | Custom CSS class for toast root element                                       |
+| **escapeMarkup**        | `boolean`     | `false`     | Escape HTML markup in toast text                                              |
+| **ariaLive**            | `string`      | `"polite"`  | ARIA live region: `"off"`, `"polite"`, `"assertive"`                          |
+| **style**               | `object`      | -           | Custom CSS styles for toast                                                   |
+| **selector**            | `string`      | `"body"`    | Custom selector for toast container                                           |
 
 ---
 
@@ -45,9 +53,9 @@ Use a simple string to display a basic notification.
   </div>
 
 ```javascript
-QuickToast({
+QuickToast.info({
   text: "A Plain Text Notification",
-}).notify();
+});
 ```
 
 </div>
@@ -64,12 +72,19 @@ Add formatted content (bold, colors, emojis, etc.) using an HTML string.
   </div>
 
 ```javascript
-QuickToast({
+QuickToast.success({
   text: "<b>Success!</b> 🎉 Your content has been <span style='color:green;'>added</span>.",
-  type: "success",
   escapeMarkup: true,
-}).notify();
+});
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: Think of `title` as your toast's name tag. Without it, your toast is just another anonymous notification in the crowd. Give it a proper name and watch it shine! ✨
 
 </div>
 
@@ -118,6 +133,14 @@ QuickToast({
 
 ---
 
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: The `node` option is like giving your toast a makeover. Instead of plain text, you can now create toasts that look like they came from a designer's dream! Just remember: with great power comes great responsibility... and potentially very complex HTML. 🎭
+
+</div>
+
+---
+
 ## node
 
 Pass a custom DOM element for fully flexible and complex toast content.
@@ -142,6 +165,14 @@ QuickToast({
 
 ---
 
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `duration` is like setting a timer for your toast's social life. Too short and it's gone before anyone notices. Too long and it becomes that guest who never leaves the party. Find the sweet spot! 🎯
+
+</div>
+
+---
+
 ## duration
 
 Set the duration for which the toast notification will be visible.
@@ -154,10 +185,10 @@ Set the duration for which the toast notification will be visible.
   </div>
 
 ```javascript
-QuickToast({
+QuickToast.info({
   text: "This toast will disappear after 5 seconds",
   duration: 5000,
-}).notify();
+});
 ```
 
 </div>
@@ -170,12 +201,19 @@ QuickToast({
   </div>
 
 ```javascript
-QuickToast({
+QuickToast.danger({
   text: "This Toast stays visible for 15 seconds",
   duration: 15000,
-  type: "danger",
-}).notify();
+});
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `progress` is like adding a countdown timer to your toast. It's perfect for those moments when you want to build suspense - "Will they read this message before it disappears?" The answer is usually no, but hey, at least they know how much time they have left! 😅
 
 </div>
 
@@ -200,6 +238,14 @@ QuickToast({
   progress: true,
 }).notify();
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `alwaysVisible: true` is like giving your toast a permanent visa. It's the clingy friend who never leaves until you explicitly tell them to go. Perfect for important messages, but use sparingly - nobody likes a toast that overstays its welcome! 🚪
 
 </div>
 
@@ -230,6 +276,14 @@ QuickToast({
 
 ---
 
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `stopOnHover` is like giving your toast a pause button. Hover over it and time stands still! It's perfect for those users who like to take their sweet time reading (we all know who you are). Just remember: with great power comes great responsibility... and potentially very long-lived toasts! ⏸️
+
+</div>
+
+---
+
 ## stopOnHover
 
 decides whether the toast should stop auto-dismiss when hovered over.
@@ -250,6 +304,14 @@ QuickToast({
   stopOnHover: true,
 }).notify();
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: The `type` option is like choosing your toast's personality. Success toasts are the optimistic ones, error toasts are the dramatic ones, and warning toasts are the cautious ones. Choose wisely - your toast's emotional state matters! 🎨
 
 </div>
 
@@ -304,6 +366,14 @@ QuickToast({
   alwaysVisible: true,
 }).notify();
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: The `destination` option turns your toast into a clickable link! It's like giving your notification a passport to travel anywhere on the web. Perfect for when you want to say "Hey, check this out!" and actually take them there. No more copy-pasting URLs like a caveman! 🚀
 
 </div>
 
@@ -712,6 +782,14 @@ QuickToast({
 
 ---
 
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `position` is like choosing which side of the room your toast hangs out on. Left side? Right side? Center stage? It's like being a toast DJ - you control where the party happens! Just remember: left is right, right is left, and center is... well, center! 🎯
+
+</div>
+
+---
+
 ## position
 
 Horizontal position of the toast container.
@@ -734,6 +812,14 @@ QuickToast({
   position: "left",
 }).notify();
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `gravity` is like choosing whether your toast lives in the sky or underground. Top gravity? It's floating like a cloud. Bottom gravity? It's chilling with the roots. Think of it as your toast's altitude preference - some like to soar, others prefer to stay grounded! 🚀
 
 </div>
 
@@ -783,6 +869,14 @@ QuickToast({
 
 ---
 
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `placement` is like having a GPS for your toast! Instead of manually setting `position` and `gravity`, just tell it where to go: "top-center", "bottom-left", etc. It's like ordering food delivery - you don't need to give the driver separate latitude and longitude coordinates! 🗺️
+
+</div>
+
+---
+
 ## placement
 
 Use `placement` as a shorthand for `gravity` + `position`.
@@ -824,15 +918,18 @@ QuickToast({
 
 ---
 
-Note on shorthand aliases:
+## Placement Shorthand Aliases
 
-- You can also use compact shorthands; these are equivalent:
-  - `t-l`, `tl` → `top-left`
-  - `t-c`, `tc` → `top-center`
-  - `t-r`, `tr` → `top-right`
-  - `b-l`, `bl` → `bottom-left`
-  - `b-c`, `bc` → `bottom-center`
-  - `b-r`, `br` → `bottom-right`
+You can also use compact shorthands for faster typing. These are equivalent to the full placement values:
+
+| Shorthand     | Full Placement  | Description         |
+| ------------- | --------------- | ------------------- |
+| `t-l` or `tl` | `top-left`      | Top left corner     |
+| `t-c` or `tc` | `top-center`    | Top center          |
+| `t-r` or `tr` | `top-right`     | Top right corner    |
+| `b-l` or `bl` | `bottom-left`   | Bottom left corner  |
+| `b-c` or `bc` | `bottom-center` | Bottom center       |
+| `b-r` or `br` | `bottom-right`  | Bottom right corner |
 
 ## rootClass
 
@@ -869,7 +966,7 @@ Set this option to `true` if you want to escape HTML markup in the toast text.
 
 ```javascript
 QuickToast({
-  text: "This toast has <i>escaped markup</i>",
+  text: "This toast has <i><b><u>escaped markup</u></b></i>",
 }).notify();
 ```
 
@@ -884,7 +981,7 @@ QuickToast({
 
 ```javascript
 QuickToast({
-  text: "This toast has <i>escaped markup</i>",
+  text: "This toast has <i><b><u>escaped markup</u></b></i>",
   escapeMarkup: true,
 }).notify();
 ```
@@ -919,7 +1016,15 @@ QuickToast({
 
 </div>
 
---
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: The `style` option is like being a toast fashion designer! Want a gradient background? Custom fonts? Border radius that would make a circle jealous? This is your playground! Just remember: with great styling power comes great responsibility... and potentially very flashy toasts! ✨
+
+</div>
+
+---
 
 ## style
 
@@ -935,11 +1040,19 @@ QuickToast({
   text: "This toast has a custom background color",
   type: "error",
   style: {
-    background: "linear-gradient(to right, #2e32ffff, #7b97feff)",
-    color: "#000",
+    background: "linear-gradient(to right,rgb(145, 147, 255),rgb(67, 97, 206))",
+    color: "#fff",
   },
 }).notify();
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: The `selector` option is like choosing your toast's neighborhood. Want it to live in a specific div instead of the default body? It's like real estate for toasts! Perfect for when you want your notifications to stay within certain boundaries. Location, location, location! 🏠
 
 </div>
 

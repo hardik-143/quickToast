@@ -63,5 +63,78 @@ pre {
 
 /* sidebar  */
 .sidebar-nav .section-link span {
-  display: none ;
+  display: none;
 }
+
+[data-lang="javascript"]::after {
+  display: none;
+}
+
+/* blockquote tip */
+.markdown-section p.tip {
+  border-left-color: rgb(103, 192, 144);
+  background: rgb(103, 192, 144, 0.06);
+}
+.markdown-section p.tip::before {
+  background: rgb(103, 192, 144);
+  content: "i";
+}
+/* ------ */
+.markdown-section .blockquote-orange p.tip {
+  border-left-color: rgb(233, 105, 0);
+  background: rgba(233, 105, 0, 0.06);
+}
+.markdown-section .blockquote-orange p.tip::before {
+  content: "✔";
+  font-size: 10px;
+  background: rgba(233, 105, 0);
+}
+
+.markdown-section p.tip code {
+  background: white;
+}
+
+/* ------ */
+/* .dropDown {
+  position: relative;
+  border-radius: 8px;
+  width: 200px;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(136, 136, 136, 0.203);
+}
+.dropDown__header {
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  justify-items: space-between;
+  padding: 2px 12px;
+}
+.dropDown__header .dropDown__header__title {
+  flex: 1;
+}
+.dropDown__header .dropDown__header__action i {
+  transition: all 0.3s ease-in-out;
+}
+.dropDown.dropDown__opened .dropDown__header .dropDown__header__action i {
+  transform: rotate(180deg);
+}
+.dropDown__body {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px;
+  max-height: 300px;
+  overflow-y: scroll;
+  display: none;
+  box-shadow: 0px 4px 10px rgba(136, 136, 136, 0.203);
+}
+.dropDown__body .dropDown__body__item {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.dropDown__body .dropDown__body__item:hover {
+  background: #f5f5f5;
+} */

@@ -1,18 +1,24 @@
-# QuickToast Functions
+# 🎭 QuickToast Functions
 
-> QuickToast provides convenient function shortcuts for creating different types of toast notifications. These functions are easier to use than the main constructor and automatically set the appropriate styling and icons.
+> **🎪 The Magic Show of Toast Creation!** QuickToast provides convenient function shortcuts for creating different types of toast notifications. These functions are easier to use than the main constructor and automatically set the appropriate styling and icons.
 
----
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **🚀 Pro tip**: Think of these as your toast's personality shortcuts. Instead of saying "I want a toast with type success," just say `QuickToast.success()` and watch the magic happen! It's like having a personal toast butler. 🎩✨
+
+## </div>
 
 ## Available Functions
 
 QuickToast offers 5 main functions that you can call directly:
 
-- **`QuickToast.info()`** - Information notifications (blue theme)
-- **`QuickToast.success()`** - Success messages (green theme)
-- **`QuickToast.warning()`** - Warning alerts (orange theme)
-- **`QuickToast.error()`** - Error messages (red theme)
-- **`QuickToast.danger()`** - Danger/critical alerts (red theme)
+| Function               | Color  | Icon | Use Case                             |
+| ---------------------- | ------ | ---- | ------------------------------------ |
+| `QuickToast.info()`    | Blue   | ℹ️   | General information, tips, updates   |
+| `QuickToast.success()` | Green  | ✅   | Successful operations, confirmations |
+| `QuickToast.warning()` | Orange | ⚠️   | Warnings, attention needed           |
+| `QuickToast.error()`   | Red    | ❌   | Errors, failures, issues             |
+| `QuickToast.danger()`  | Red    | ❗   | Critical errors, security alerts     |
 
 ---
 
@@ -24,7 +30,7 @@ All functions follow the same pattern:
 QuickToast.functionName(options);
 ```
 
-Where `options` is an object containing the toast configuration.
+Where `options` is an object containing the toast configuration. See **[Options](options.md)** for a complete list of available configuration options.
 
 ---
 
@@ -34,7 +40,7 @@ Where `options` is an object containing the toast configuration.
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Show Toast</button>
+  <button data-quicktoast>Show Toasts</button>
   </div>
 
 ```javascript
@@ -72,7 +78,7 @@ QuickToast.danger({
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Show Toast</button>
+  <button data-quicktoast>Show Toast with</button>
   </div>
 
 ```javascript
@@ -80,8 +86,7 @@ QuickToast.success({
   text: "Operation completed successfully!",
   title: "Success",
   duration: 5000,
-  position: "top-center",
-  closeButton: true,
+  placement: "bottom-center",
 });
 ```
 
@@ -95,7 +100,7 @@ QuickToast.success({
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Show Toast</button>
+  <button data-quicktoast>Show Toasts</button>
   </div>
 
 ```javascript
@@ -113,7 +118,7 @@ QuickToast.warning({ text: "Warning message" });
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Show Toast</button>
+  <button data-quicktoast>Show Toasts</button>
   </div>
 
 ```javascript
@@ -133,7 +138,7 @@ QuickToast({ text: "Warning message", type: "warning" }).notify();
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Show Toast</button>
+  <button data-quicktoast>Show Toasts</button>
   </div>
 
 ```javascript
@@ -145,7 +150,7 @@ function notify({ text, type = "info", ...rest }) {
 // Usage
 notify({ text: "Saved!", type: "success" });
 notify({ text: "Heads up", type: "warning", duration: 7000 });
-notify({ text: "Uh oh", type: "error", closeButton: true });
+notify({ text: "Uh oh", type: "error", close: false });
 ```
 
 </div>
@@ -162,22 +167,9 @@ notify({ text: "Uh oh", type: "error", closeButton: true });
 
 ---
 
-## Function Reference
-
-| Function               | Color  | Icon | Use Case                             |
-| ---------------------- | ------ | ---- | ------------------------------------ |
-| `QuickToast.info()`    | Blue   | ℹ️   | General information, tips, updates   |
-| `QuickToast.success()` | Green  | ✓    | Successful operations, confirmations |
-| `QuickToast.warning()` | Orange | ⚠️   | Warnings, attention needed           |
-| `QuickToast.error()`   | Red    | ❌   | Errors, failures, issues             |
-| `QuickToast.danger()`  | Red    | 🚨   | Critical errors, security alerts     |
-
----
-
 ## Related Documentation
 
 - [Getting Started](getting-started.md) - Basic setup and installation
 - [Options](options.md) - Complete list of configuration options
 - [Events](events.md) - Toast lifecycle events
 - [Data API](data-api.md) - Declarative toast creation
-- [QuickToast Functions](quicktoast-functions.md) - Detailed function documentation

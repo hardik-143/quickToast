@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"
     /> -->
+    <link rel="stylesheet" href="css/copy-code.css" />
     <link rel="stylesheet" href="css/docsify.css" />
     <link rel="stylesheet" href="css/index.css" />
     <!-- <link
@@ -151,6 +152,15 @@
         subMaxLevel: 3,
         routerMode: "history", // default: 'hash'
         themeColor: "#347433",
+        auto2top: true,
+
+        tabs: {
+          persist: true, // default
+          sync: true, // default
+          theme: "classic", // default
+          tabComments: true, // default
+          tabHeadings: true, // default
+        },
       };
     </script>
 
@@ -159,6 +169,7 @@
     <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script> -->
     <script src="plugins/search.js"></script>
     <script src="plugins/copy-code.js"></script>
+    <script src="plugins/tabs.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   </body>
 </html>
