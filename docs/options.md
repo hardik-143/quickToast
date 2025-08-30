@@ -486,10 +486,13 @@ async function myAsyncGuard() {
 }
 
 QuickToast({
-  text: "Go to dashboard",
-  destination: "/dashboard",
+  text: "Click to open Google",
+  destination: "https://www.google.com/",
   beforeDestination: async () => {
     const ok = await myAsyncGuard();
+    if (!ok) {
+      alert("redirection cancelled");
+    } 
     return ok; // cancel if false
   },
 }).notify();

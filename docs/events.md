@@ -35,7 +35,7 @@
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Show Toast</button>
+  <button data-quicktoast=":show">Show Toast</button>
   </div>
 
 ```javascript
@@ -60,7 +60,7 @@ QuickToast({
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Show Toast</button>
+  <button data-quicktoast=":inserted">Show Toast</button>
   </div>
 
 ```javascript
