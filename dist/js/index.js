@@ -144,9 +144,17 @@ const makeOptionsObj = (opts) => {
       // Fallback to placement if no explicit gravity
       if (typeof opts.placement === "string") {
         const val = opts.placement.trim().toLowerCase();
-        const [g] = val.split(/[-]/); // take first part before '-'
-        if (gravityMap[g]) {
+
+        // support shorthand like "tl", "t-l", etc.
+        if (/^(t|b)(l|c|r)$/.test(val)) {
+          const [g] = val.split("");
           return gravityMap[g];
+        }
+
+        // support full "top-left", "bottom-right" etc.
+        const parts = val.split("-");
+        if (parts.length === 2 && gravityMap[parts[0]]) {
+          return gravityMap[parts[0]];
         }
       }
 
@@ -178,6 +186,7 @@ const makeOptionsObj = (opts) => {
         // support shorthand like "tl", "br", etc.
         if (/^(t|b)(l|c|r)$/.test(val)) {
           const [, pos] = val.split("");
+
           return positionMap[pos];
         }
 
