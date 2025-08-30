@@ -1,0 +1,13 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// ==============================
+// Base :root CSS Variables
+// ==============================
+:root {
+  @include export-vars($font-family);
+  @include export-vars($colors);
+  @include export-vars($shadows);
+  @include export-vars($layout);
+  @include export-vars($transitions);
+}

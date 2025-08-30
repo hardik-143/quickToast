@@ -51,6 +51,31 @@
       .trim();
   }
 
+  function cleanSpangtId(url) {
+    return url.replace(/([?&]id=.*?)(?:.*?spangt-)/, "$1");
+  }
+  function stripMarkdown(content) {
+    if (!content) return "";
+
+    return (
+      content
+        // Remove images: ![alt](url)
+        .replace(/!\[.*?\]\(.*?\)/g, "")
+        // Remove links but keep link text: [text](url) → text
+        .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+        // Remove bold/italic: **text**, *text*, __text__, _text_
+        .replace(/(\*\*|__)(.*?)\1/g, "$2")
+        .replace(/(\*|_)(.*?)\1/g, "$2")
+        // Remove inline code `code`
+        .replace(/`(.*?)`/g, "$1")
+        // Remove headings #, ##, ### etc.
+        .replace(/^#+\s*(.*)/gm, "$1")
+        // Remove remaining markdown symbols if needed
+        .replace(/>+/g, "") // blockquotes
+        .trim()
+    );
+  }
+
   /* eslint-disable no-unused-vars */
 
   var INDEXS = {};
@@ -416,13 +441,19 @@
 
     var html = "";
     matchs.forEach(function (post) {
+      let tempH2 = document.createElement("span");
+      // Set the HTML string
+      tempH2.innerHTML = post.title;
+
+      // Extract the plain text (emoji will remain as text)
+      let pureH2 = tempH2.textContent.trim();
       html +=
         '<div class="matching-post">\n<a href="' +
-        post.url +
+        cleanSpangtId(post.url) +
         '">\n<h2>' +
-        post.title +
+        pureH2 +
         "</h2>\n<p>" +
-        post.content +
+        stripMarkdown(post.content) +
         "</p>\n</a>\n</div>";
     });
 

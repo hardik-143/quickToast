@@ -1,6 +1,6 @@
 # 🚀 QuickToast
 
-> **🎉 The feature-rich toast library you'll ever need.** Built with real-world applications in mind, QuickToast goes beyond simple notifications to deliver a complete user feedback system.
+**🎉 The feature-rich toast library you'll ever need.** Built with real-world applications in mind, QuickToast goes beyond simple notifications to deliver a complete user feedback system.
 
 <div class="blockquote-orange blockquote-wrapper">
 
@@ -10,37 +10,37 @@
 
 ---
 
-## **What Makes QuickToast Special?** <!-- {docsify-ignore} -->
+## What Makes QuickToast Special? :id=what-makes-quicktoast-special <!-- {docsify-ignore} -->
 
 This isn't just another toast library. QuickToast is developed for **production-grade applications** with features that actually matter:
 
-### <span>🎯</span> Smart Positioning
+### 🎯 Smart Positioning :id=smart-positioning
 
 - **Flexible positioning**: Use shorthand like `"tl"` (top-left) or full `"top-center"`
 - **Responsive design**: Automatically centers on small screens (≤360px)
 
-### <span>🔄</span> Advanced Lifecycle Control
+### 🔄 Advanced Lifecycle Control :id=advanced-lifecycle-control
 
 - **Event-driven architecture**: Hook into `onClose`, `onDestroy`, `onClick`
 - **Async support**: `onClose`, `beforeDestination` supports async operations
 - **Smart timeouts**: Pause auto-dismiss on hover with `stopOnHover`
 - **Global events**: Listen to `quickToast:destroy`, `quickToast:timeout`, `quickToast:count-change`
 
-### <span>🎨</span> Rich Content & Styling
+### 🎨 Rich Content & Styling :id=rich-content-styling
 
 - **HTML nodes**: Display complex content, forms, or custom components
 - **Custom styling**: Override any CSS property with the `style` object
 - **Type-based theming**: 5 built-in types with their SVG icons
 - **Progress bars**: Show loading states with built-in progress support
 
-### <span>🚀</span> Developer Experience
+### 🚀 Developer Experience :id=developer-experience
 
 - **Zero dependencies**: Pure vanilla JavaScript
 - **Helper functions**: `QuickToast.info()`, `QuickToast.success()`, etc.
 - **Using Main Constructor** : `QuickToast(options).notify()`
 - **Console utilities**: `QuickToast.demo()`, `QuickToast.clear()`, `QuickToast.count()`
 
-### <span>🌐</span> Navigation & Actions
+### 🌐 Navigation & Actions :id=navigation-actions
 
 - **Click destinations**: Navigate users with `destination` option
 - **Confirmation buttons**: Action buttons with custom callbacks
@@ -49,7 +49,7 @@ This isn't just another toast library. QuickToast is developed for **production-
 
 ---
 
-<!-- ## <span>🔗</span> Related Documentation
+<!-- ## 🔗 Related Documentation
 
 - [📖 Getting Started](getting-started.md) - Setup and basic usage
 - [⚙️ Functions](functions.md) - Helper functions and shortcuts

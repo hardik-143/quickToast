@@ -1,6 +1,6 @@
-# 🎛️ **Options**
+# 🎛️ **Options** :id=options
 
-> **🎯 The Ultimate QuickToast Configuration Guide** - Because sometimes you need more control than just "show me a toast, any toast!"
+**🎯 The Ultimate QuickToast Configuration Guide** - Because sometimes you need more control than just "show me a toast, any toast!"
 
 <div class="blockquote-orange blockquote-wrapper">
 
@@ -30,7 +30,7 @@
 | **confirmButtonText**   | `string`      | `"Confirm"` | Custom text for the confirm button                                            |
 | **onConfirm**           | `function`    | -           | Callback when confirm button is clicked                                       |
 | **closeAfterOnConfirm** | `boolean`     | `false`     | Remove toast after confirm button is clicked                                  |
-| **position**            | `string`      | `"right"`   | Horizontal position: `"left"` or `"right"`                                    |
+| **position**            | `string`      | `"right"`   | Horizontal position: `"left"`, `"right"` or `"center"`                        |
 | **gravity**             | `string`      | `"top"`     | Vertical position: `"top"` or `"bottom"`                                      |
 | **placement**           | `string`      | -           | Shorthand: `"(top \| bottom)-(left \| center \| right)"`(e.g.,`"top-center"`) |
 | **rootClass**           | `string`      | -           | Custom CSS class for toast root element                                       |
@@ -82,14 +82,6 @@ QuickToast.success({
 
 ---
 
-<div class="blockquote-orange blockquote-wrapper">
-
-!> **Pro tip**: Think of `title` as your toast's name tag. Without it, your toast is just another anonymous notification in the crowd. Give it a proper name and watch it shine! ✨
-
-</div>
-
----
-
 ## title
 
 Add a title to your toast notification for better organization and hierarchy.
@@ -106,6 +98,14 @@ QuickToast({
   type: "success",
 }).notify();
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: Think of `title` as your toast's name tag. Without it, your toast is just another anonymous notification in the crowd. Give it a proper name and watch it shine! ✨
 
 </div>
 
@@ -133,14 +133,6 @@ QuickToast({
 
 ---
 
-<div class="blockquote-orange blockquote-wrapper">
-
-!> **Pro tip**: The `node` option is like giving your toast a makeover. Instead of plain text, you can now create toasts that look like they came from a designer's dream! Just remember: with great power comes great responsibility... and potentially very complex HTML. 🎭
-
-</div>
-
----
-
 ## node
 
 Pass a custom DOM element for fully flexible and complex toast content.
@@ -163,11 +155,9 @@ QuickToast({
 
 !> When `node` is provided, it takes precedence over `text` and will override it.
 
----
-
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **Pro tip**: `duration` is like setting a timer for your toast's social life. Too short and it's gone before anyone notices. Too long and it becomes that guest who never leaves the party. Find the sweet spot! 🎯
+!> **Pro tip**: The `node` option is like giving your toast a makeover. Instead of plain text, you can now create toasts that look like they came from a designer's dream! Just remember: with great power comes great responsibility... and potentially very complex HTML. 🎭
 
 </div>
 
@@ -195,6 +185,14 @@ QuickToast.info({
 
 ---
 
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `duration` is like setting a timer for your toast's social life. Too short and it's gone before anyone notices. Too long and it becomes that guest who never leaves the party. Find the sweet spot! 🎯
+
+</div>
+
+---
+
 <div class="code-wrapper">
   <div>
   <button data-quicktoast>Show Toast</button>
@@ -206,14 +204,6 @@ QuickToast.danger({
   duration: 15000,
 });
 ```
-
-</div>
-
----
-
-<div class="blockquote-orange blockquote-wrapper">
-
-!> **Pro tip**: `progress` is like adding a countdown timer to your toast. It's perfect for those moments when you want to build suspense - "Will they read this message before it disappears?" The answer is usually no, but hey, at least they know how much time they have left! 😅
 
 </div>
 
@@ -245,7 +235,7 @@ QuickToast({
 
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **Pro tip**: `alwaysVisible: true` is like giving your toast a permanent visa. It's the clingy friend who never leaves until you explicitly tell them to go. Perfect for important messages, but use sparingly - nobody likes a toast that overstays its welcome! 🚪
+!> **Pro tip**: `progress` is like adding a countdown timer to your toast. It's perfect for those moments when you want to build suspense - "Will they read this message before it disappears?" The answer is usually no, but hey, at least they know how much time they have left! 😅
 
 </div>
 
@@ -274,11 +264,9 @@ QuickToast({
 
 !> `alwaysVisible: true` takes precedence over both `progress` and `duration` — enabling it will override progress, and automatically set duration to `Infinity`.
 
----
-
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **Pro tip**: `stopOnHover` is like giving your toast a pause button. Hover over it and time stands still! It's perfect for those users who like to take their sweet time reading (we all know who you are). Just remember: with great power comes great responsibility... and potentially very long-lived toasts! ⏸️
+!> **Pro tip**: `alwaysVisible: true` is like giving your toast a permanent visa. It's the clingy friend who never leaves until you explicitly tell them to go. Perfect for important messages, but use sparingly - nobody likes a toast that overstays its welcome! 🚪
 
 </div>
 
@@ -311,7 +299,7 @@ QuickToast({
 
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **Pro tip**: The `type` option is like choosing your toast's personality. Success toasts are the optimistic ones, error toasts are the dramatic ones, and warning toasts are the cautious ones. Choose wisely - your toast's emotional state matters! 🎨
+!> **Pro tip**: `stopOnHover` is like giving your toast a pause button. Hover over it and time stands still! It's perfect for those users who like to take their sweet time reading (we all know who you are). Just remember: with great power comes great responsibility... and potentially very long-lived toasts! ⏸️
 
 </div>
 
@@ -373,7 +361,7 @@ QuickToast({
 
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **Pro tip**: The `destination` option turns your toast into a clickable link! It's like giving your notification a passport to travel anywhere on the web. Perfect for when you want to say "Hey, check this out!" and actually take them there. No more copy-pasting URLs like a caveman! 🚀
+!> **Pro tip**: The `type` option is like choosing your toast's personality. Success toasts are the optimistic ones, error toasts are the dramatic ones, and warning toasts are the cautious ones. Choose wisely - your toast's emotional state matters! 🎨
 
 </div>
 
@@ -394,6 +382,14 @@ QuickToast({
   destination: "https://www.google.com",
 }).notify();
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: The `destination` option turns your toast into a clickable link! It's like giving your notification a passport to travel anywhere on the web. Perfect for when you want to say "Hey, check this out!" and actually take them there. No more copy-pasting URLs like a caveman! 🚀
 
 </div>
 
@@ -797,6 +793,7 @@ Horizontal position of the toast container.
 Available positions are:
 
 - `left`
+- `center`
 - `right`
 
 > default is `right`
@@ -812,14 +809,6 @@ QuickToast({
   position: "left",
 }).notify();
 ```
-
-</div>
-
----
-
-<div class="blockquote-orange blockquote-wrapper">
-
-!> **Pro tip**: `gravity` is like choosing whether your toast lives in the sky or underground. Top gravity? It's floating like a cloud. Bottom gravity? It's chilling with the roots. Think of it as your toast's altitude preference - some like to soar, others prefer to stay grounded! 🚀
 
 </div>
 
@@ -871,7 +860,7 @@ QuickToast({
 
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **Pro tip**: `placement` is like having a GPS for your toast! Instead of manually setting `position` and `gravity`, just tell it where to go: "top-center", "bottom-left", etc. It's like ordering food delivery - you don't need to give the driver separate latitude and longitude coordinates! 🗺️
+!> **Pro tip**: `gravity` is like choosing whether your toast lives in the sky or underground. Top gravity? It's floating like a cloud. Bottom gravity? It's chilling with the roots. Think of it as your toast's altitude preference - some like to soar, others prefer to stay grounded! 🚀
 
 </div>
 
@@ -879,40 +868,59 @@ QuickToast({
 
 ## placement
 
-Use `placement` as a shorthand for `gravity` + `position`.
+**🎯 The Smart Way to Position Your Toasts!** Instead of setting `position` and `gravity` separately, use `placement` to specify both at once. It's like having a GPS coordinate system for your notifications!
 
-Valid values:
+### Available Placement Values
 
-- `top-left`
-- `top-center`
-- `top-right`
-- `bottom-left`
-- `bottom-center`
-- `bottom-right`
+Think of your screen as a grid with 6 possible positions:
 
-`placement` takes precedence over `position`/`gravity`. If invalid, the library falls back to the explicit `position`/`gravity` or defaults.
+| Position        | Description         | Visual Reference |
+| --------------- | ------------------- | ---------------- |
+| `top-left`      | Top left corner     | ↖️               |
+| `top-center`    | Top center          | ⬆️               |
+| `top-right`     | Top right corner    | ↗️               |
+| `bottom-left`   | Bottom left corner  | ↙️               |
+| `bottom-center` | Bottom center       | ⬇️               |
+| `bottom-right`  | Bottom right corner | ↘️               |
+
+### How It Works
+
+- **`placement` takes priority** over individual `position` and `gravity` settings
+- **Invalid values fall back** to your explicit `position`/`gravity` or defaults
+- **Perfect for quick positioning** without remembering two separate options
+
+### Quick Examples
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Show Toast</button>
+  <button data-quicktoast>Show Placement Examples</button>
   </div>
 
 ```javascript
+// Top center - perfect for important announcements
 QuickToast({
-  text: "Top Center via placement",
+  text: "🎉 Top center announcement!",
   placement: "top-center",
 }).notify();
 
+// Bottom left - great for status updates
 QuickToast({
-  text: "Bottom Left via placement",
+  text: "📱 Status update in bottom left",
   placement: "bottom-left",
 }).notify();
 
+// Bottom center - ideal for action confirmations
 QuickToast({
-  text: "Bottom Center via placement",
+  text: "✅ Action confirmed in bottom center",
   placement: "bottom-center",
 }).notify();
 ```
+
+</div>
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro Tip**: Use `top-center` for important messages that need attention, and `bottom-center` for confirmations that users need to see but not interrupt their flow!
 
 </div>
 
@@ -920,16 +928,44 @@ QuickToast({
 
 ## Placement Shorthand Aliases
 
-You can also use compact shorthands for faster typing. These are equivalent to the full placement values:
+**⚡ Type Faster with Compact Codes!** Use these short aliases when you want to position toasts quickly without typing the full placement values.
 
-| Shorthand     | Full Placement  | Description         |
-| ------------- | --------------- | ------------------- |
-| `t-l` or `tl` | `top-left`      | Top left corner     |
-| `t-c` or `tc` | `top-center`    | Top center          |
-| `t-r` or `tr` | `top-right`     | Top right corner    |
-| `b-l` or `bl` | `bottom-left`   | Bottom left corner  |
-| `b-c` or `bc` | `bottom-center` | Bottom center       |
-| `b-r` or `br` | `bottom-right`  | Bottom right corner |
+### Shorthand Reference Table
+
+| Shorthand     | Full Placement  | Description         | Use Case                            |
+| ------------- | --------------- | ------------------- | ----------------------------------- |
+| `tl` or `t-l` | `top-left`      | Top left corner     | Status indicators, navigation hints |
+| `tc` or `t-c` | `top-center`    | Top center          | Important announcements, alerts     |
+| `tr` or `t-r` | `top-right`     | Top right corner    | Notifications, updates              |
+| `bl` or `b-l` | `bottom-left`   | Bottom left corner  | Progress updates, system messages   |
+| `bc` or `b-c` | `bottom-center` | Bottom center       | Confirmations, user actions         |
+| `br` or `b-r` | `bottom-right`  | Bottom right corner | Quick info, tooltips                |
+
+### Code Examples
+
+<div class="code-wrapper">
+  <div>
+  <button data-quicktoast>Show Placement Examples</button>
+  </div>
+
+```javascript
+// Quick shorthand usage
+QuickToast.success({ text: "Success!", placement: "tc" }); // top-center
+QuickToast.info({ text: "Info", placement: "b-l" }); // bottom-left
+QuickToast.warning({ text: "Warning", placement: "b-r" }); // bottom-right
+```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **🎯 Pro tip**: Think of `placement` as your toast's GPS coordinates! Instead of giving separate "latitude" (`gravity`) and "longitude" (`position`) instructions, just say "go to top-center" and it knows exactly where to land. Perfect for developers who want to position toasts quickly without remembering two separate options! 🚀
+
+</div>
+
+---
 
 ## rootClass
 
@@ -1018,14 +1054,6 @@ QuickToast({
 
 ---
 
-<div class="blockquote-orange blockquote-wrapper">
-
-!> **Pro tip**: The `style` option is like being a toast fashion designer! Want a gradient background? Custom fonts? Border radius that would make a circle jealous? This is your playground! Just remember: with great styling power comes great responsibility... and potentially very flashy toasts! ✨
-
-</div>
-
----
-
 ## style
 
 This option allows you to customize the CSS styles of the toast.
@@ -1052,7 +1080,7 @@ QuickToast({
 
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **Pro tip**: The `selector` option is like choosing your toast's neighborhood. Want it to live in a specific div instead of the default body? It's like real estate for toasts! Perfect for when you want your notifications to stay within certain boundaries. Location, location, location! 🏠
+!> **Pro tip**: The `style` option is like being a toast fashion designer! Want a gradient background? Custom fonts? Border radius that would make a circle jealous? This is your playground! Just remember: with great styling power comes great responsibility... and potentially very flashy toasts! ✨
 
 </div>
 
@@ -1079,3 +1107,39 @@ QuickToast({
 ```
 
 </div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: The `selector` option is like choosing your toast's neighborhood. Want it to live in a specific div instead of the default body? It's like real estate for toasts! Perfect for when you want your notifications to stay within certain boundaries. Location, location, location! 🏠
+
+</div>
+
+---
+
+## You're Now a QuickToast Configuration Master! <!-- {docsify-ignore} -->
+
+Congratulations! You've just explored the complete arsenal of QuickToast configuration options. From basic text display to advanced positioning, from custom styling to accessibility features - you now have **complete control** over how your notifications behave and appear.
+
+### What You've Learned <!-- {docsify-ignore} -->
+
+**Content Control**: Mastered text, titles, and custom HTML nodes  
+**Visual Design**: Understood types, styling, and positioning systems  
+**User Experience**: Learned about timing, interactions, and accessibility  
+**Advanced Features**: Explored events, confirmations, and custom containers
+
+### Next Steps <!-- {docsify-ignore} -->
+
+Now that you understand all the options, it's time to put them into action:
+
+- **Experiment** with different combinations to find your perfect toast setup
+- **Customize** the appearance to match your application's design language
+- **Optimize** user experience by choosing the right positioning and timing
+- **Accessibility** - ensure your toasts work for all users
+
+### Remember <!-- {docsify-ignore} -->
+
+**With great power comes great responsibility** - use these options wisely to create notifications that enhance rather than interrupt the user experience. The best toasts are the ones users barely notice because they're so seamlessly integrated into your application.
+
+**Happy toasting!** 🚀

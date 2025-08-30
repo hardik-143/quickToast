@@ -1,6 +1,6 @@
-# 🚀 Getting Started
+# 🚀 Getting Started :id=getting-started
 
-> **⚡ From Zero to Toast Hero in Under 2 Minutes!** This guide covers everything from basic installation to advanced usage patterns. No more staring at blank screens wondering where to start!
+**⚡ From Zero to Toast Hero in Under 2 Minutes!** This guide covers everything from basic installation to advanced usage patterns. No more staring at blank screens wondering where to start!
 
 <div class="blockquote-orange blockquote-wrapper">
 
@@ -10,7 +10,7 @@
 
 ---
 
-## <span>📦</span> Installation
+## 📦 Installation :id=installation
 
 ### CDN (Recommended)
 
@@ -29,7 +29,7 @@
 
 ---
 
-## <span>🎯</span> Basic Usage
+## 🎯 Basic Usage :id=basic-usage
 
 ### Simple Toast
 
@@ -114,7 +114,7 @@ QuickToast({
 
 ---
 
-## <span>🎨</span> Advanced Examples
+## 🎨 Advanced Examples :id=advanced-examples
 
 ### Toast with Title and Actions
 
@@ -181,7 +181,7 @@ QuickToast({
 
 ---
 
-## <span>🎭</span> Toast Types
+## 🎭 Toast Types :id=toast-types
 
 QuickToast comes with 5 built-in types, each with distinct styling and icons:
 
@@ -193,7 +193,7 @@ QuickToast comes with 5 built-in types, each with distinct styling and icons:
 
 ---
 
-## <span>🎯</span>Position and Gravity Options
+## 🎯 Position and Gravity Options :id=position-gravity-options
 
 ### Using Position and Gravity Separately
 
@@ -298,18 +298,18 @@ QuickToast.info({
 
 ---
 
-## <span>🚀</span> Next Steps
+## 🚀 Next Steps :id=next-steps
 
 Now that you have the basics, explore:
 
-- **[Functions](functions.md)** - Learn about helper functions and shortcuts
 - **[Options](options.md)** - Complete configuration reference
-- **[Events](events.md)** - Lifecycle events and callbacks
+- **[Functions](functions.md)** - Learn about helper functions and shortcuts
 - **[Data API](data-api.md)** - Declarative toast creation
+- **[Events](events.md)** - Lifecycle events and callbacks
 
 ---
 
-## <span>💡</span> Pro Tips
+## 💡 Pro Tips :id=pro-tips
 
 1. **Use helper functions** for common toast types - they're more readable
 2. **Set appropriate duration** - longer for important messages, shorter for quick confirmations

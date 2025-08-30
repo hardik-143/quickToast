@@ -1,29 +1,37 @@
-# Events
+# 🎭 Events :id=events
 
-QuickToast exposes lifecycle data via a global CustomEvent and onDestroy payload. Use these hooks to integrate analytics, logging, or custom logic.
+**🎬 The Drama Behind Every Toast** - Watch your notifications perform their entire lifecycle on the DOM stage! From their grand entrance to their dramatic exit, every moment is captured and broadcasted for your entertainment and debugging pleasure. 🎪
 
-## Global DOM events
+## Global DOM events :id=global-dom-events
 
-| Event                     | Description                                                                         |
-| ------------------------- | ----------------------------------------------------------------------------------- |
-| `quickToast:show`         | when show method has been called for the toast                                      |
-| `quickToast:inserted`     | toast inserted into the DOM (before visible)                                        |
-| `quickToast:shown`        | toast became visible (after CSS show transition begins)                             |
-| `quickToast:hide`         | hide begins; includes removal reason and timing                                     |
-| `quickToast:hidden`       | toast removed; prefer `quickToast:destroy` for post-removal                         |
-| `quickToast:destroy`      | toast removed from DOM; canonical post-removal event                                |
-| `quickToast:timeout`      | auto-dismiss due to elapsed duration                                                |
-| `quickToast:count-change` | number of active toasts changed `{ active }`                                        |
-| `quickToast:progress`     | periodic updates while progress bar is enabled `{ ratio, remainingMs, durationMs }` |
-| `quickToast:pause`        | hover paused the timer `{ remainingMs, durationMs }`                                |
-| `quickToast:resume`       | hover resumed the timer `{ remainingMs, durationMs }`                               |
+| Event                     | Description                                               | Use Case                                  |
+| ------------------------- | --------------------------------------------------------- | ----------------------------------------- |
+| **Lifecycle Events**      |                                                           |                                           |
+| `quickToast:show`         | Show method called for the toast                          | Track toast creation attempts             |
+| `quickToast:inserted`     | Toast inserted into DOM (before visible)                  | DOM manipulation, pre-animation setup     |
+| `quickToast:shown`        | Toast became visible (after CSS transition)               | Post-animation actions, user engagement   |
+| **Timer Events**          |                                                           |                                           |
+| `quickToast:progress`     | Progress bar updates `{ ratio, remainingMs, durationMs }` | Real-time progress tracking               |
+| `quickToast:pause`        | Timer paused on hover `{ remainingMs, durationMs }`       | User interaction analytics                |
+| `quickToast:resume`       | Timer resumed after hover `{ remainingMs, durationMs }`   | User interaction analytics                |
+| `quickToast:timeout`      | Auto-dismiss due to elapsed duration                      | Auto-close tracking, user behavior        |
+| **Removal Events**        |                                                           |                                           |
+| `quickToast:hide`         | Hide begins; includes removal reason and timing           | Pre-removal actions, cleanup              |
+| `quickToast:destroy`      | Toast removed from DOM; canonical post-removal event      | **Primary event for cleanup & analytics** |
+| **System Events**         |                                                           |                                           |
+| `quickToast:count-change` | Number of active toasts changed `{ active }`              | Toast queue management, UI updates        |
 
-### Destroy Event
+<div class="blockquote-orange blockquote-wrapper">
 
-QuickToast dispatches a global CustomEvent on `document` so you can observe removals without passing per-toast callbacks.
+!> **🎭 Pro Tip**: Think of these events as your toast's personal reality show! You can spy on every moment - from their dramatic entrance (`quickToast:show`) to their tearful goodbye (`quickToast:destroy`). Perfect for analytics, debugging, or just satisfying your inner nosy neighbor! 🕵️‍♂️
 
-- Event name: `quickToast:destroy`
-- Detail: `DestroyPayload` (same as `onDestroy`)
+</div>
+
+## 🎬 Lifecycle Events :id=lifecycle-events
+
+### Show Event - The Grand Entrance <!-- {docsify-ignore} -->
+
+**When the curtain rises** - Track every toast creation attempt
 
 <div class="code-wrapper">
   <div>
@@ -31,30 +39,14 @@ QuickToast dispatches a global CustomEvent on `document` so you can observe remo
   </div>
 
 ```javascript
-// Listen for any toast removal
-function onToastDestroy(e) {
-  console.log("e", e);
-  const { reason, type, title, text, lifetimeMs, remainingToasts } = e.detail;
-  alert(
-    `[destroy] reason=${reason} type=${type} title=${title} lifetime=${lifetimeMs}ms left=${remainingToasts}`
-  );
-
-  // Example: react only to user-driven closes
-  if (reason === "close_click" || reason === "dismiss_click") {
-    // e.g., send analytics
-  }
-}
-
-document.addEventListener("quickToast:destroy", onToastDestroy);
+document.addEventListener("quickToast:show", (e) => {
+  console.log("🎬 Toast is about to make its entrance:", e.detail);
+});
 
 QuickToast({
-  title: "Close me",
-  text: "Click the X to close",
-  duration: 0,
+  text: "Watch the console for the show event!",
+  type: "info",
   alwaysVisible: true,
-  onDestroy: (payload) => {
-    console.log("toast destoyed");
-  },
 }).notify();
 ```
 
@@ -62,12 +54,9 @@ QuickToast({
 
 ---
 
-### Timeout event
+### Inserted Event - Backstage Setup <!-- {docsify-ignore} -->
 
-QuickToast also dispatches a global event when a toast auto-dismisses due to elapsed duration.
-
-- Event name: `quickToast:timeout`
-- Detail: `DestroyPayload` with `reason: "timeout"`
+**DOM insertion complete** - Perfect for pre-animation setup and DOM manipulation
 
 <div class="code-wrapper">
   <div>
@@ -75,83 +64,69 @@ QuickToast also dispatches a global event when a toast auto-dismisses due to ela
   </div>
 
 ```javascript
-// Listen for auto-dismisses only
-document.addEventListener("quickToast:timeout", (e) => {
-  const { type, title, text, lifetimeMs, remainingToasts } = e.detail;
-  console.log(
-    `[timeout] ${type} lifetime=${lifetimeMs}ms left=${remainingToasts}`
-  );
+document.addEventListener("quickToast:inserted", (e) => {
+  console.log("🎪 Toast has entered the DOM stage:", e.detail.toastElement);
+  // Perfect place for DOM manipulation before animation
 });
 
-QuickToast({ text: "Will auto close", duration: 1000 }).notify();
+QuickToast({
+  text: "I'm backstage, setting up for my big moment!",
+  alwaysVisible: true,
+}).notify();
 ```
 
 </div>
 
 ---
 
-### Count change event
+### Shown Event - The Spotlight <!-- {docsify-ignore} -->
 
-Fires whenever the number of active toasts changes (after insertion and after removal).
-
-- Event name: `quickToast:count-change`
-- Detail: `{ active: number }`
+**Curtain call complete** - Post-animation actions and user engagement tracking
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Open Console and Check Logs</button>
+  <button data-quicktoast>Show Toast</button>
   </div>
 
 ```javascript
-document.addEventListener("quickToast:count-change", (e) => {
-  console.log("Active toasts:", e.detail.active);
+document.addEventListener("quickToast:shown", (e) => {
+  console.log("✨ Toast is now in the spotlight:", e.detail);
+  // Great for analytics and post-animation actions
 });
 
 QuickToast({
-  text: "Remove the toast and check console",
-  type: "warning",
+  text: "I'm visible and ready to perform!",
+  type: "success",
   alwaysVisible: true,
+  style: { transitionDuration: "1s" },
 }).notify();
-QuickToast({
-  text: "Remove the toast and check console",
-  type: "danger",
-  alwaysVisible: true,
-}).notify();
-QuickToast({
-  text: "Remove the toast and check console",
-  alwaysVisible: true,
-}).notify();
-setTimeout(() => QuickToast.success({ text: "Check the count" }), 500);
-setTimeout(() => QuickToast.warning({ text: "Check the count" }), 1000);
-setTimeout(() => QuickToast.error({ text: "Check the count" }), 1500);
 ```
 
 </div>
 
 ---
 
-### Progress event
+## ⏰ Timer Events :id=timer-events
 
-Fires periodically while the progress bar is enabled and the toast is counting down.
+### Progress Event - Real-time Countdown <!-- {docsify-ignore} -->
 
-- Event name: `quickToast:progress`
-- Detail: `{ ratio, remainingMs, durationMs }`
+**Live progress tracking** - Get updates every 100ms while progress bar is active
 
 <div class="code-wrapper">
   <div>
-  <button data-quicktoast>Open Console and Check Logs</button>
+  <button data-quicktoast>Show Toast with Progress</button>
   </div>
 
 ```javascript
 document.addEventListener("quickToast:progress", (e) => {
   const { ratio, remainingMs, durationMs } = e.detail;
   console.log(
-    `ratio=${ratio.toFixed(2)} remaining=${remainingMs}ms / ${durationMs}ms`
+    `⏳ Progress: ${(ratio * 100).toFixed(1)}% | ${remainingMs}ms remaining`
   );
 });
 
 QuickToast({
-  text: "Check Console and Hover over me",
+  text: "Watch the progress in console!",
   duration: 5000,
   progress: true,
   stopOnHover: true,
@@ -162,105 +137,9 @@ QuickToast({
 
 ---
 
-### Show/Shown events
+### Pause/Resume Events - User Interaction <!-- {docsify-ignore} -->
 
-Emitted around the visibility lifecycle:
-
-- `quickToast:show`: when show method has been called for the toast
-- `quickToast:shown`: toast has become visible after the show transition begins
-
-- Detail: `{ type, title?, text?, node?, toastElement }`
-
-<div class="code-wrapper">
-  <div>
-  <button data-quicktoast>Open Console and Check Logs</button>
-  </div>
-
-```javascript
-document.addEventListener("quickToast:show", (e) => {
-  console.log("[show]", e.detail);
-});
-document.addEventListener("quickToast:shown", (e) => {
-  console.log("[shown]", e.detail);
-});
-
-QuickToast({
-  text: "Hey There!!",
-  type: "warning",
-  alwaysVisible: true,
-  style: {
-    transitionDuration: "1s",
-  },
-}).notify();
-```
-
-</div>
-
----
-
-### Inserted event
-
-Fired when a toast has just been inserted into the DOM (prior to becoming visible).
-
-- Event name: `quickToast:inserted`
-- Detail: `{ type, title?, text?, node?, toastElement }`
-
-<div class="code-wrapper">
-  <div>
-  <button data-quicktoast>Open Console and Check Logs</button>
-  </div>
-
-```javascript
-document.addEventListener("quickToast:inserted", (e) => {
-  console.log("[inserted]", e.detail.toastElement, e.detail);
-});
-
-QuickToast({ text: "Inserted demo", alwaysVisible: true }).notify();
-```
-
-</div>
-
----
-
-### Hide
-
-Fired when a toast starts hiding (`hide`)
-
-- Event names: `quickToast:hide`
-- Detail: `DestroyPayload`
-
-<div class="code-wrapper">
-  <div>
-  <button data-quicktoast>Open Console and Check Logs</button>
-  </div>
-
-```javascript
-document.addEventListener("quickToast:hide", (e) => {
-  console.log("[hide]", e.detail.reason, e.detail);
-});
-
-QuickToast({
-  text: "Check console when I'm getting hidden",
-  type: "info",
-  // alwaysVisible: true,
-  // style: {
-  //   transitionDuration: "1s",
-  // },
-}).notify();
-```
-
-</div>
-
-!> There is no separate `quickToast:hidden` event required. Use `quickToast:destroy` for post-removal logic; it provides the same payload and semantics when the toast has been removed from the DOM.
-
----
-
-### Pause/Resume events
-
-Fired when hover pauses or resumes the auto-dismiss timer.
-
-- Event names: `quickToast:pause`, `quickToast:resume`
-- Detail: `{ remainingMs, durationMs }`
+**⏸Hover to pause, leave to resume** - Track user engagement with your toasts
 
 <div class="code-wrapper">
   <div>
@@ -270,15 +149,15 @@ Fired when hover pauses or resumes the auto-dismiss timer.
 ```javascript
 document.addEventListener("quickToast:pause", (e) => {
   const { remainingMs, durationMs } = e.detail;
-  console.log(`[pause] remaining=${remainingMs} / ${durationMs}`);
+  console.log(`⏸️ Timer paused! ${remainingMs}ms saved`);
 });
 document.addEventListener("quickToast:resume", (e) => {
   const { remainingMs, durationMs } = e.detail;
-  console.log(`[resume] remaining=${remainingMs} / ${durationMs}`);
+  console.log(`▶️ Timer resumed! ${remainingMs}ms left to go`);
 });
 
 QuickToast({
-  text: "Hover to pause, leave to resume",
+  text: "Hover over me to pause, leave to resume!",
   duration: 5000,
   progress: true,
   stopOnHover: true,
@@ -289,7 +168,125 @@ QuickToast({
 
 ---
 
-## Programmatic removal events
+### Timeout Event - Auto-Dismiss <!-- {docsify-ignore} -->
+
+**Natural expiration** - Track when toasts auto-close due to time
+
+<div class="code-wrapper">
+  <div>
+  <button data-quicktoast>Show Toast</button>
+  </div>
+
+```javascript
+document.addEventListener("quickToast:timeout", (e) => {
+  const { type, title, text, lifetimeMs, remainingToasts } = e.detail;
+  console.log(
+    `⏰ Toast timed out after ${lifetimeMs}ms | ${remainingToasts} toasts left`
+  );
+});
+
+QuickToast({
+  text: "I'll auto-close in 2 seconds!",
+  duration: 2000,
+}).notify();
+```
+
+</div>
+
+---
+
+## 🚪 Removal Events :id=removal-events
+
+### Hide Event - The Exit Begins <!-- {docsify-ignore} -->
+
+**Curtain call starts** - Pre-removal actions and cleanup preparation
+
+<div class="code-wrapper">
+  <div>
+  <button data-quicktoast>Show Toast</button>
+  </div>
+
+```javascript
+document.addEventListener("quickToast:hide", (e) => {
+  console.log("🚪 Toast is starting its exit:", e.detail.reason);
+  // Perfect for pre-removal cleanup
+});
+
+QuickToast({
+  text: "I'm about to leave - check the console!",
+  type: "warning",
+  duration: 3000,
+}).notify();
+```
+
+</div>
+
+---
+
+### Destroy Event - The Final Curtain <!-- {docsify-ignore} -->
+
+**Post-show cleanup** - **Primary event for cleanup & analytics** - Use this for all post-removal logic
+
+<div class="code-wrapper">
+  <div>
+  <button data-quicktoast>Show Toast</button>
+  </div>
+
+```javascript
+document.addEventListener("quickToast:destroy", (e) => {
+  const { reason, type, title, text, lifetimeMs, remainingToasts } = e.detail;
+  console.log(
+    `🎭 Toast destroyed! Reason: ${reason} | Lifetime: ${lifetimeMs}ms | ${remainingToasts} toasts remaining`
+  );
+
+  // Perfect for analytics and cleanup
+  if (reason === "close_click" || reason === "dismiss_click") {
+    console.log("👤 User manually closed this toast");
+  }
+});
+
+QuickToast({
+  title: "Close me manually",
+  text: "Click the X to see the destroy event",
+  alwaysVisible: true,
+}).notify();
+```
+
+</div>
+
+---
+
+## 📊 System Events :id=system-events
+
+### Count Change Event - Queue Management <!-- {docsify-ignore} -->
+
+**Active toast counter** - Track changes in your toast queue
+
+<div class="code-wrapper">
+  <div>
+  <button data-quicktoast>Show Multiple Toasts</button>
+  </div>
+
+```javascript
+document.addEventListener("quickToast:count-change", (e) => {
+  console.log(`📊 Toast count changed: ${e.detail.active} active toasts`);
+});
+
+// Show multiple toasts to see count changes
+QuickToast.success({ text: "First toast", alwaysVisible: true });
+QuickToast.warning({ text: "Second toast", alwaysVisible: true });
+QuickToast.error({ text: "Third toast", alwaysVisible: true });
+
+setTimeout(() => {
+  console.log("Current count:", QuickToast.count());
+}, 1000);
+```
+
+</div>
+
+---
+
+## Programmatic removal events :id=programmatic-removal-events
 
 You can request a toast to remove itself by dispatching a custom event on the toast node:
 
@@ -325,7 +322,7 @@ setTimeout(() => {
 
 ---
 
-## Count and clear helpers
+## Count and clear helpers :id=count-and-clear-helpers
 
 While not events, these are useful when coordinating logic:
 

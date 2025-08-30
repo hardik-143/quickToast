@@ -1,0 +1,39 @@
+// ==============================
+// Variables / Design Tokens
+// ==============================
+
+// Fonts
+$font-family: (
+  "font-family": '"Inter", sans-serif'
+);
+
+// Colors
+$colors: (
+  "color": #0065f8,
+  "background": #ffffff,
+  "text-color": #343638,
+  "success": #5ebb5b,
+  "danger": #ed3a3e,
+  "error": #ed3a3e,
+  "info": #0065f8,
+  "warning": #ffc446
+);
+
+// Shadows
+$shadows: (
+  "shadow": 0px 5px 7px 0px #0000001f
+);
+
+// Layout / Spacing
+$layout: (
+  "padding": 12px,
+  "border-radius": 8px,
+  "default-width": 400px,
+  "max-width": calc(100% / 4),
+  "z-index": 2147483647
+);
+
+// Transitions
+$transitions: (
+  "transition": all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1)
+);

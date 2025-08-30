@@ -1,0 +1,25 @@
+// ==============================
+// Mixins
+// ==============================
+
+// Export SCSS maps to CSS variables
+@mixin export-vars($map, $prefix: "quickToast-") {
+  @each $name, $value in $map {
+    --#{$prefix}#{$name}: #{$value};
+  }
+}
+
+// Mixin to apply variant color
+@mixin quickToast-colored($color-var) {
+  border-color: $color-var;
+
+  .quickToast-icon svg {
+    path {
+      fill: $color-var;
+    }
+  }
+
+  .quickToast-progress {
+    background: $color-var;
+  }
+}

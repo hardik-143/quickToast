@@ -1,0 +1,178 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// ==============================
+// Toast Component Styles
+// ==============================
+
+.quickToast {
+  padding: var(--quickToast-padding);
+  color: var(--quickToast-text-color);
+  display: inline-block;
+  font-family: var(--quickToast-font-family);
+  border-width: 1px 2px 1px 2px;
+  border-style: solid;
+  box-shadow: var(--quickToast-shadow);
+  background: var(--quickToast-background);
+  position: fixed;
+  opacity: 0;
+  transition: var(--quickToast-transition);
+  border-radius: var(--quickToast-border-radius);
+  cursor: pointer;
+  text-decoration: none;
+  max-width: clamp(
+    var(--quickToast-default-width),
+    var(--quickToast-max-width),
+    var(--quickToast-max-width)
+  );
+  z-index: var(--quickToast-z-index);
+  border-color: var(--quickToast-info);
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &.show {
+    opacity: 1;
+    transform: translateX(0) !important;
+  }
+
+  .quickToast-progress {
+    position: absolute;
+    bottom: -8px;
+    left: 8px;
+    height: 1px;
+    width: calc(100% - 20px);
+    transform-origin: left;
+    transition: transform 0.1s linear;
+  }
+
+  // Variants (success, danger, etc.)
+  &.quickToast-success {
+    @include quickToast-colored(var(--quickToast-success));
+  }
+  &.quickToast-danger {
+    @include quickToast-colored(var(--quickToast-danger));
+  }
+  &.quickToast-error {
+    @include quickToast-colored(var(--quickToast-danger));
+  }
+  &.quickToast-info {
+    @include quickToast-colored(var(--quickToast-info));
+  }
+  &.quickToast-warning {
+    @include quickToast-colored(var(--quickToast-warning));
+  }
+
+  // Inner Layout
+  .quickToast-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    .quickToast-icon {
+      height: 24px;
+      width: 24px;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .quickToast-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      h3.quickToast-title {
+        margin: 0;
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 600;
+        color: var(--quickToast-text-color);
+      }
+      .quickToast-content {
+        line-height: 24px;
+      }
+    }
+    // Close Button
+    .quickToast-close {
+      background: transparent;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      height: 24px;
+      width: 24px;
+      font-family: inherit;
+      font-size: 16px;
+      opacity: 0.6;
+      display: flex;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  // Action Buttons
+  .quickToast-action-buttons {
+    display: flex;
+    justify-content: end;
+  }
+
+  .quickToast-confirm-button {
+    border: 1px solid var(--quickToast-text-color);
+    color: var(--quickToast-text-color);
+    background: transparent;
+    outline: none;
+    height: 24px;
+    padding: 0 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background: var(--quickToast-text-color);
+      color: var(--quickToast-background);
+    }
+  }
+}
+
+// Placement
+.quickToast-right {
+  right: 15px;
+  transform: translateX(100%) !important;
+}
+
+.quickToast-left {
+  left: 15px;
+  transform: translateX(-100%) !important;
+}
+
+.quickToast-top {
+  top: -150px;
+}
+
+.quickToast-bottom {
+  bottom: -150px;
+}
+
+.quickToast-center {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  max-width: fit-content;
+  max-width: -moz-fit-content;
+}
+
+// Responsive
+@media only screen and (max-width: 360px) {
+  .quickToast-right,
+  .quickToast-left {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: fit-content;
+  }
+}
