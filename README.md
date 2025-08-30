@@ -62,13 +62,7 @@ QuickToast({
 
 ## Documentation
 
-Visit our [documentation site](docs/) to learn more about:
-
-- [Getting Started Guide](docs/getting-started.md)
-- [Available Functions](docs/functions.md)
-- [Configuration Options](docs/options.md)
-- [Events & Callbacks](docs/events.md)
-- [Data Attributes API](docs/data-api.md)
+Visit our [documentation site](https://quicktoast.thehardik.in/) to learn more about:
 
 ## License
 
