@@ -49,6 +49,10 @@ This isn't just another toast library. QuickToast is developed for **production-
 
 ---
 
+## 🚀 Get Started in Minutes! <!-- {docsify-ignore} -->
+
+[Getting Started](getting-started.md)
+
 <!-- ## 🔗 Related Documentation
 
 - [📖 Getting Started](getting-started.md) - Setup and basic usage
