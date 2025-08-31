@@ -1,6 +1,6 @@
 # 🚀 Getting Started :id=intro
 
-**⚡ From Zero to Toast Hero in Under 2 Minutes!** This guide covers everything from basic installation to advanced usage patterns. No more staring at blank screens wondering where to start!
+**From Zero to Toast Hero in Under 2 Minutes!** This guide covers everything from basic installation to advanced usage patterns. No more staring at blank screens wondering where to start!
 
 <div class="blockquote-orange blockquote-wrapper">
 

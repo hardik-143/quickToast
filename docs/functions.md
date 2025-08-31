@@ -1,6 +1,6 @@
 # 🎭 QuickToast Functions :id=intro
 
-**⚡ The Power of One-Line Toast Creation!** Why write 3 lines when you can write 1? These function shortcuts are your secret weapon for creating beautiful, type-specific notifications in a single command. No more remembering type names or dealing with verbose constructors - just pure toast magic!
+**The Power of One-Line Toast Creation!** Why write 3 lines when you can write 1? These function shortcuts are your secret weapon for creating beautiful, type-specific notifications in a single command. No more remembering type names or dealing with verbose constructors - just pure toast magic!
 
 <div class="blockquote-orange blockquote-wrapper">
 
