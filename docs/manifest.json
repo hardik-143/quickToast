@@ -1,0 +1,17 @@
+{
+  "name": "QuickToast Documentation",
+  "short_name": "QuickToast Docs",
+  "description": "Documentation for QuickToast - A lightweight toast notification library",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#42b983",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2342b983'/%3E%3Ctext x='50' y='50' font-family='Arial' font-size='60' text-anchor='middle' dy='.3em' fill='white'%3EQ%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

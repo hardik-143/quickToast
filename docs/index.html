@@ -4,6 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta charset="UTF-8" />
+    <meta name="theme-color" content="#42b983" />
+    <link rel="manifest" href="manifest.json" />
     <!-- <link
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"
@@ -206,5 +208,74 @@
     <script src="plugins/tabs.js"></script>
     <!-- <script src="js/docsify.js"></script> -->
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+
+    <!-- Service Worker -->
+    <script>
+      // Register Service Worker
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .then((registration) => {
+              console.log("ServiceWorker registration successful");
+            })
+            .catch((err) => {
+              console.error("ServiceWorker registration failed: ", err);
+            });
+        });
+      }
+
+      // Handle online/offline events
+      function updateOnlineStatus() {
+        const statusBar = document.createElement("div");
+        statusBar.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          padding: 8px;
+          text-align: center;
+          z-index: 1000;
+          font-size: 14px;
+          transition: all 0.3s ease;
+          transform: translateY(${navigator.onLine ? "-100%" : "0"});
+          background-color: ${navigator.onLine ? "#42b983" : "#e74c3c"};
+          color: white;
+        `;
+        statusBar.id = "connection-status";
+        statusBar.textContent = navigator.onLine
+          ? "🌐 Back online! Documentation is up to date."
+          : "📡 You are offline. Some content may be unavailable.";
+
+        // Remove existing status bar if any
+        const existingBar = document.getElementById("connection-status");
+        if (existingBar) {
+          existingBar.remove();
+        }
+
+        document.body.appendChild(statusBar);
+
+        // Animate in
+        setTimeout(() => {
+          statusBar.style.transform = "translateY(0)";
+        }, 100);
+
+        // Remove after delay if online
+        if (navigator.onLine) {
+          setTimeout(() => {
+            statusBar.style.transform = "translateY(-100%)";
+            setTimeout(() => statusBar.remove(), 300);
+          }, 3000);
+        }
+      }
+
+      window.addEventListener("online", updateOnlineStatus);
+      window.addEventListener("offline", updateOnlineStatus);
+
+      // Check initial status
+      if (!navigator.onLine) {
+        updateOnlineStatus();
+      }
+    </script>
   </body>
 </html>
