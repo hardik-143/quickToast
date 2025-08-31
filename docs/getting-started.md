@@ -1,16 +1,16 @@
-# 🚀 Getting Started :id=getting-started
+# 🚀 Getting Started :id=intro
 
 **⚡ From Zero to Toast Hero in Under 2 Minutes!** This guide covers everything from basic installation to advanced usage patterns. No more staring at blank screens wondering where to start!
 
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **🎯 Pro tip**: Think of this as your toast bootcamp. By the end, you'll be creating notifications so beautiful, users will actually want to see them. Yes, we're that good! 🚀
+!> **Pro tip**: Think of this as your toast bootcamp. By the end, you'll be creating notifications so beautiful, users will actually want to see them. Yes, we're that good! 🚀
 
 </div>
 
 ---
 
-## 📦 Installation :id=installation
+## Installation
 
 ### CDN (Recommended)
 
@@ -29,7 +29,7 @@
 
 ---
 
-## 🎯 Basic Usage :id=basic-usage
+## Basic Usage
 
 ### Simple Toast
 
@@ -114,7 +114,7 @@ QuickToast({
 
 ---
 
-## 🎨 Advanced Examples :id=advanced-examples
+## Advanced Examples
 
 ### Toast with Title and Actions
 
@@ -181,7 +181,7 @@ QuickToast({
 
 ---
 
-## 🎭 Toast Types :id=toast-types
+## Toast Types
 
 QuickToast comes with 5 built-in types, each with distinct styling and icons:
 
@@ -193,7 +193,7 @@ QuickToast comes with 5 built-in types, each with distinct styling and icons:
 
 ---
 
-## 🎯 Position and Gravity Options :id=position-gravity-options
+## Position and Gravity Options
 
 ### Using Position and Gravity Separately
 
@@ -298,7 +298,7 @@ QuickToast.info({
 
 ---
 
-## 🚀 Next Steps :id=next-steps
+## Next Steps
 
 Now that you have the basics, explore:
 
@@ -309,7 +309,7 @@ Now that you have the basics, explore:
 
 ---
 
-## 💡 Pro Tips :id=pro-tips
+## Pro Tips
 
 1. **Use helper functions** for common toast types - they're more readable
 2. **Set appropriate duration** - longer for important messages, shorter for quick confirmations

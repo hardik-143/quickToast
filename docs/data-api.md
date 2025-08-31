@@ -1,8 +1,8 @@
-# 💥 Declarative Actions (Data-API) :id=declarative-actions-data-api
+# 💥 Declarative Actions (Data-API) :id=intro
 
-**🔌 Wire Up Your Toasts Without Writing a Single Line of JavaScript!** Transform your HTML content into interactive powerhouses using simple data attributes. Watch as your toasts become self-aware and handle their own destiny with just a few magical attributes! ✨
+**Wire Up Your Toasts Without Writing a Single Line of JavaScript!** Transform your HTML content into interactive powerhouses using simple data attributes. Watch as your toasts become self-aware and handle their own destiny with just a few magical attributes! ✨
 
-## 🎯 Available Attributes :id=available-attributes
+## Available Attributes
 
 - `data-dismiss-self="true"` - **Self-Destruct Button**: Makes any element close its own toast when clicked
 - `data-confirm-click="true"` - **Action Trigger**: Makes any element act like the confirm button
@@ -15,7 +15,7 @@
 
 ---
 
-## 📝 Examples :id=examples
+## Examples
 
 ### Self-Destruct Button (Close Toast)
 
@@ -61,7 +61,7 @@ QuickToast({
 
 ---
 
-## 🎨 Using Real DOM Elements :id=using-real-dom-elements
+## Using Real DOM Elements
 
 <div class="code-wrapper">
   <div>
@@ -86,14 +86,14 @@ QuickToast({
 
 ---
 
-## 💡 How It Works :id=how-it-works
+## How It Works
 
 - **Event Delegation**: Events are automatically handled within the toast content - no manual binding needed!
 - **Multiple Elements**: You can have several interactive elements in the same toast - they all work together!
 - **Smart Confirm**: `data-confirm-click="true"` respects all your `onConfirm` settings, including async handlers and `closeAfterOnConfirm`.
 - **Consistent Behavior**: `data-dismiss-self="true"` works exactly like the close button and passes `dismiss_click` to `onDestroy`.
 
-## ♿ Accessibility Best Practices :id=accessibility-best-practices
+## Accessibility Best Practices
 
 - **Use Semantic Elements**: Prefer `<button>` over `<a href="#">` for actions - it's more accessible!
 - **Clear Descriptions**: Provide descriptive text for screen readers (e.g., "Dismiss notification" instead of just "Close").

@@ -1,8 +1,8 @@
 # 🎭 Events :id=events
 
-**🎬 The Drama Behind Every Toast** - Watch your notifications perform their entire lifecycle on the DOM stage! From their grand entrance to their dramatic exit, every moment is captured and broadcasted for your entertainment and debugging pleasure. 🎪
+**The Drama Behind Every Toast** - Watch your notifications perform their entire lifecycle on the DOM stage! From their grand entrance to their dramatic exit, every moment is captured and broadcasted for your entertainment and debugging pleasure. 🎪
 
-## Global DOM events :id=global-dom-events
+## Global DOM events
 
 | Event                     | Description                                               | Use Case                                  |
 | ------------------------- | --------------------------------------------------------- | ----------------------------------------- |
@@ -23,11 +23,11 @@
 
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **🎭 Pro Tip**: Think of these events as your toast's personal reality show! You can spy on every moment - from their dramatic entrance (`quickToast:show`) to their tearful goodbye (`quickToast:destroy`). Perfect for analytics, debugging, or just satisfying your inner nosy neighbor! 🕵️‍♂️
+!> **Pro Tip**: Think of these events as your toast's personal reality show! You can spy on every moment - from their dramatic entrance (`quickToast:show`) to their tearful goodbye (`quickToast:destroy`). Perfect for analytics, debugging, or just satisfying your inner nosy neighbor! 🕵️‍♂️
 
 </div>
 
-## 🎬 Lifecycle Events :id=lifecycle-events
+## Lifecycle Events
 
 ### Show Event - The Grand Entrance <!-- {docsify-ignore} -->
 
@@ -106,7 +106,7 @@ QuickToast({
 
 ---
 
-## ⏰ Timer Events :id=timer-events
+## Timer Events
 
 ### Progress Event - Real-time Countdown <!-- {docsify-ignore} -->
 
@@ -195,7 +195,7 @@ QuickToast({
 
 ---
 
-## 🚪 Removal Events :id=removal-events
+## Removal Events
 
 ### Hide Event - The Exit Begins <!-- {docsify-ignore} -->
 
@@ -256,7 +256,7 @@ QuickToast({
 
 ---
 
-## 📊 System Events :id=system-events
+## System Events
 
 ### Count Change Event - Queue Management <!-- {docsify-ignore} -->
 
@@ -286,7 +286,7 @@ setTimeout(() => {
 
 ---
 
-## Programmatic removal events :id=programmatic-removal-events
+## Programmatic removal events
 
 You can request a toast to remove itself by dispatching a custom event on the toast node:
 
@@ -322,7 +322,7 @@ setTimeout(() => {
 
 ---
 
-## Count and clear helpers :id=count-and-clear-helpers
+## Count and clear helpers
 
 While not events, these are useful when coordinating logic:
 

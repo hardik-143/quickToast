@@ -1,16 +1,16 @@
-# 🎭 QuickToast Functions :id=quicktoast-functions
+# 🎭 QuickToast Functions :id=intro
 
 **⚡ The Power of One-Line Toast Creation!** Why write 3 lines when you can write 1? These function shortcuts are your secret weapon for creating beautiful, type-specific notifications in a single command. No more remembering type names or dealing with verbose constructors - just pure toast magic!
 
 <div class="blockquote-orange blockquote-wrapper">
 
-!> **🚀 Pro tip**: Think of these as your toast's personality shortcuts. Instead of saying "I want a toast with type success," just say `QuickToast.success()` and watch the magic happen! It's like having a personal toast butler. 🎩✨
+!> **Pro tip**: Think of these as your toast's personality shortcuts. Instead of saying "I want a toast with type success," just say `QuickToast.success()` and watch the magic happen! It's like having a personal toast butler. 🎩✨
 
 </div>
 
 ---
 
-## 🚀 Your Toast Arsenal :id=your-toast-arsenal
+## Your Toast Arsenal
 
 **5 Functions, Infinite Possibilities** - Each function is a specialized tool designed for a specific purpose. Think of them as your toast toolkit, each with its own personality and superpower!
 
@@ -24,7 +24,7 @@
 
 ---
 
-## ⚡ The Magic Formula :id=the-magic-formula
+## The Magic Formula
 
 **One Pattern to Rule Them All** - Every function follows the exact same structure, making them incredibly predictable and easy to use:
 
@@ -36,7 +36,7 @@ QuickToast.functionName(options);
 
 ---
 
-## 🎯 Live Examples :id=live-examples
+## Live Examples
 
 ### Basic Usage - The Foundation
 
@@ -100,7 +100,7 @@ QuickToast.success({
 
 ---
 
-## ⚔️ The Great Debate: Functions vs Constructor :id=functions-vs-constructor
+## The Great Debate: Functions vs Constructor
 
 **Choose Your Weapon Wisely** - Both approaches have their place, but knowing when to use each can make you a toast ninja!
 
@@ -181,7 +181,7 @@ notify({ text: "Uh oh", type: "error", close: false }); // Error that can't be c
 
 ---
 
-## 🎯 Pro Tips & Best Practices :id=pro-tips-best-practices
+## Pro Tips & Best Practices
 
 **Master These and You'll Be Unstoppable** - These aren't just suggestions, they're the secrets that separate toast amateurs from toast legends!
 
@@ -199,7 +199,7 @@ notify({ text: "Uh oh", type: "error", close: false }); // Error that can't be c
 
 ---
 
-## 🚀 Ready to Level Up? :id=ready-to-level-up
+## Ready to Level Up?
 
 **Your Toast Journey Continues** - You've mastered the functions, now explore the full power of QuickToast!
 
@@ -212,7 +212,7 @@ notify({ text: "Uh oh", type: "error", close: false }); // Error that can't be c
 
 ---
 
-## You're Now a Function Master! 🎉 :id=function-master
+## You're Now a Function Master!
 
 **Congratulations!** You've just unlocked the power of one-line toast creation. From simple info messages to complex interactive notifications, you now have the tools to create any toast your application needs.
 

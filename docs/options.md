@@ -1,6 +1,6 @@
-# 🎛️ **Options** :id=options
+# 🎛️ **Options** :id=intro
 
-**🎯 The Ultimate QuickToast Configuration Guide** - Because sometimes you need more control than just "show me a toast, any toast!"
+**The Ultimate QuickToast Configuration Guide** - Because sometimes you need more control than just "show me a toast, any toast!"
 
 <div class="blockquote-orange blockquote-wrapper">
 
@@ -492,7 +492,7 @@ QuickToast({
     const ok = await myAsyncGuard();
     if (!ok) {
       alert("redirection cancelled");
-    } 
+    }
     return ok; // cancel if false
   },
 }).notify();
