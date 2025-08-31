@@ -655,11 +655,21 @@ The `onDestroy` callback receives a payload object with contextual details about
 
 Example:
 
+<div class="code-wrapper">
+  <div>
+  <button data-quicktoast>Show Toast</button>
+  </div>
+
 ```javascript
-onDestroy: (payload) => {
-  console.log("Toast removed:", payload);
-};
+QuickToast.info({
+  text: "This toast will call onDestroy when removed",
+  onDestroy: (payload) => {
+    console.log("Toast removed:", payload);
+  },
+});
 ```
+
+</div>
 
 ---
 
@@ -757,7 +767,7 @@ QuickToast({
 
 ## closeAfterOnConfirm
 
-Set this option to `true` if you want the toast not to be removed automatically after the confirm button is clicked.
+Set this option to `true` if you want the toast to be removed automatically after the confirm button is clicked.
 
 > default is `false`.
 
@@ -776,14 +786,6 @@ QuickToast({
   },
 }).notify();
 ```
-
-</div>
-
----
-
-<div class="blockquote-orange blockquote-wrapper">
-
-!> **Pro tip**: `position` is like choosing which side of the room your toast hangs out on. Left side? Right side? Center stage? It's like being a toast DJ - you control where the party happens! Just remember: left is right, right is left, and center is... well, center! 🎯
 
 </div>
 
@@ -812,6 +814,14 @@ QuickToast({
   position: "left",
 }).notify();
 ```
+
+</div>
+
+---
+
+<div class="blockquote-orange blockquote-wrapper">
+
+!> **Pro tip**: `position` is like choosing which side of the room your toast hangs out on. Left side? Right side? Center stage? It's like being a toast DJ - you control where the party happens! Just remember: left is right, right is left, and center is... well, center! 🎯
 
 </div>
 

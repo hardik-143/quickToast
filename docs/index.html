@@ -117,6 +117,28 @@
           toastifyObjArray[Math.floor(Math.random() * toastifyObjArray.length)];
         QuickToast({ ...obj, position: positionRandom }).notify();
       });
+      function extractCallback(code) {
+        const match = code.match(
+          /document\.addEventListener\([^,]+,\s*(\([^)]*\)\s*=>\s*\{[\s\S]*?\})\s*\)/
+        );
+        return match ? match[1] : null;
+      }
+
+      function extractAndConvertCallback(code) {
+        const match = code.match(
+          /document\.addEventListener\(\s*["']([^"']+)["']\s*,\s*(\([^)]*\)\s*=>\s*\{[\s\S]*?\})\s*\)/
+        );
+        if (!match) return null;
+
+        const eventName = match[1]; // "quickToast:show"
+        const callbackStr = match[2].trim(); // (e) => { ... }
+
+        // Convert string to real function
+        const callbackFn = eval(callbackStr);
+
+        return { eventName, callbackStr, callbackFn };
+      }
+
       document.addEventListener("click", function (e) {
         // "[data-quicktoast]"
         const btn = e.target.closest("[data-quicktoast]");
@@ -127,9 +149,25 @@
         if (jsCode) {
           let codeElement = jsCode.querySelector("code");
           let code = codeElement.textContent.trim();
+
+          // let removeEventListener;
+          // if (/document\.addEventListener/.test(code)) {
+          //   let { callbackFn, eventName } = extractAndConvertCallback(code);
+          //   console.log(eventName, callbackFn);
+          //   if (callbackFn && typeof callbackFn === "function") {
+          //     removeEventListener = () => {
+          //       document.removeEventListener(eventName, callbackFn);
+          //     };
+          //   }
+          // } else {
+          //   console.log("❌ Not found");
+          // }
           if (/QuickToast\s*(?:\(|\.)/.test(code)) {
             try {
               new Function(code)();
+              // console.log(removeEventListener);
+              // removeEventListener && removeEventListener();
+              // console.log(removeEventListener);
             } catch (err) {
               console.error("Error executing QuickToast demo:", err);
             }
